@@ -94,6 +94,10 @@ typedef enum
 
 } APP_STATES;
 
+#define prtVddCtrl PORTFbits.RF6
+#define prtVbatCtrl PORTFbits.RF5
+#define prtDataCmd PORTFbits.RF4
+#define prtReset PORTGbits.RG9
 
 // *****************************************************************************
 /* Application Data
