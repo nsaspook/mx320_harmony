@@ -102,8 +102,8 @@ extern "C" {
 #define SYS_PORT_C_LAT          0x0000
 #define SYS_PORT_C_ODC          0x0000
 
-#define SYS_PORT_D_TRIS         0xFFFF
-#define SYS_PORT_D_LAT          0x0000
+#define SYS_PORT_D_TRIS         0xFFF0
+#define SYS_PORT_D_LAT          0x000F
 #define SYS_PORT_D_ODC          0x0000
 
 #define SYS_PORT_E_TRIS         0xFF00
@@ -127,6 +127,36 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
+// *****************************************************************************
+/* I2C Driver Configuration Options
+*/
+#define DRV_I2C_INTERRUPT_MODE                    		true
+#define DRV_I2C_CLIENTS_NUMBER                    		1
+#define DRV_I2C_INSTANCES_NUMBER                  		1
+
+#define DRV_I2C_PERIPHERAL_ID_IDX0                		I2C_ID_1
+#define DRV_I2C_OPERATION_MODE_IDX0               		DRV_I2C_MODE_MASTER
+#define DRV_SCL_PORT_IDX0                               PORT_CHANNEL_A
+#define DRV_SCL_PIN_POSITION_IDX0                       PORTS_BIT_POS_14
+#define DRV_SDA_PORT_IDX0                               PORT_CHANNEL_A
+#define DRV_SDA_PIN_POSITION_IDX0                       PORTS_BIT_POS_15
+#define DRV_I2C_BIT_BANG_IDX0                           false
+#define DRV_I2C_STOP_IN_IDLE_IDX0                       false
+#define DRV_I2C_SMBus_SPECIFICATION_IDX0			    false
+#define DRV_I2C_BAUD_RATE_IDX0                    		50000
+#define DRV_I2C_BRG_CLOCK_IDX0	                  		80000000
+#define DRV_I2C_SLEW_RATE_CONTROL_IDX0      			false
+#define DRV_I2C_MASTER_INT_SRC_IDX0               		INT_SOURCE_I2C_1_MASTER
+#define DRV_I2C_SLAVE_INT_SRC_IDX0                		
+#define DRV_I2C_ERR_MX_INT_SRC_IDX0               		INT_SOURCE_I2C_1_ERROR
+#define DRV_I2C_INT_VECTOR_IDX0                         INT_VECTOR_I2C1
+#define DRV_I2C_ISR_VECTOR_IDX0                         _I2C_1_VECTOR
+#define DRV_I2C_INT_PRIORITY_IDX0                 		INT_PRIORITY_LEVEL1
+#define DRV_I2C_INT_SUB_PRIORITY_IDX0             		INT_SUBPRIORITY_LEVEL0
+#define DRV_I2C_POWER_STATE_IDX0                  		SYS_MODULE_POWER_RUN_FULL
+#define DRV_I2C_INTERRUPT_MODE                    		true
+
+#define DRV_OC_DRIVER_MODE_STATIC 
 
 /*** SPI Driver Configuration ***/
 #define DRV_SPI_NUMBER_OF_MODULES		2
@@ -169,7 +199,25 @@ extern "C" {
 #define DRV_SPI_INT_SUB_PRIORITY_IDX0		INT_SUBPRIORITY_LEVEL0        
 #define DRV_SPI_QUEUE_SIZE_IDX0 			10
 #define DRV_SPI_RESERVED_JOB_IDX0 			1
+/*** Timer Driver Configuration ***/
+#define DRV_TMR_INTERRUPT_MODE             true
+#define DRV_TMR_INSTANCES_NUMBER           1
+#define DRV_TMR_CLIENTS_NUMBER             1
 
+/*** Timer Driver 0 Configuration ***/
+#define DRV_TMR_PERIPHERAL_ID_IDX0          TMR_ID_1
+#define DRV_TMR_INTERRUPT_SOURCE_IDX0       INT_SOURCE_TIMER_1
+#define DRV_TMR_INTERRUPT_VECTOR_IDX0       INT_VECTOR_T1
+#define DRV_TMR_ISR_VECTOR_IDX0             _TIMER_1_VECTOR
+#define DRV_TMR_INTERRUPT_PRIORITY_IDX0     INT_PRIORITY_LEVEL1
+#define DRV_TMR_INTERRUPT_SUB_PRIORITY_IDX0 INT_SUBPRIORITY_LEVEL0
+#define DRV_TMR_CLOCK_SOURCE_IDX0           DRV_TMR_CLKSOURCE_INTERNAL
+#define DRV_TMR_PRESCALE_IDX0               TMR_PRESCALE_VALUE_256
+#define DRV_TMR_OPERATION_MODE_IDX0         DRV_TMR_OPERATION_MODE_16_BIT
+#define DRV_TMR_ASYNC_WRITE_ENABLE_IDX0     false
+#define DRV_TMR_POWER_STATE_IDX0            SYS_MODULE_POWER_RUN_FULL
+
+ 
 // *****************************************************************************
 // *****************************************************************************
 // Section: Middleware & Other Library Configuration

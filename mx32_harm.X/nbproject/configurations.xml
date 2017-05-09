@@ -13,7 +13,15 @@
         <logicalFolder name="f1" displayName="system_config" projectFiles="true">
           <logicalFolder name="f1" displayName="default" projectFiles="true">
             <logicalFolder name="f1" displayName="framework" projectFiles="true">
-              <logicalFolder name="f1" displayName="system" projectFiles="true">
+              <logicalFolder name="f1" displayName="driver" projectFiles="true">
+                <logicalFolder name="f1" displayName="adc" projectFiles="true">
+                  <itemPath>../src/system_config/default/framework/driver/adc/drv_adc_static.h</itemPath>
+                </logicalFolder>
+                <logicalFolder name="f2" displayName="oc" projectFiles="true">
+                  <itemPath>../src/system_config/default/framework/driver/oc/drv_oc_static.h</itemPath>
+                </logicalFolder>
+              </logicalFolder>
+              <logicalFolder name="f2" displayName="system" projectFiles="true">
                 <logicalFolder name="f1" displayName="clk" projectFiles="true">
                   <logicalFolder name="f1" displayName="src" projectFiles="true">
                     <itemPath>../src/system_config/default/framework/system/clk/src/sys_clk_local.h</itemPath>
@@ -32,6 +40,7 @@
           </logicalFolder>
         </logicalFolder>
         <itemPath>../src/app.h</itemPath>
+        <itemPath>../src/bioshield.h</itemPath>
       </logicalFolder>
       <logicalFolder name="f1" displayName="framework" projectFiles="true">
         <logicalFolder name="f1" displayName="driver" projectFiles="true">
@@ -44,7 +53,10 @@
             <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/i2c/drv_i2c_compatibility.h</itemPath>
             <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/i2c/drv_i2c_mapping.h</itemPath>
           </logicalFolder>
-          <logicalFolder name="f2" displayName="spi" projectFiles="true">
+          <logicalFolder name="f2" displayName="oc" projectFiles="true">
+            <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/oc/drv_oc.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="spi" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <logicalFolder name="f1" displayName="dynamic" projectFiles="true">
                 <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/spi/src/dynamic/drv_spi_internal.h</itemPath>
@@ -54,6 +66,15 @@
               <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/spi/src/drv_spi_variant_mapping.h</itemPath>
             </logicalFolder>
             <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/spi/drv_spi.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f4" displayName="tmr" projectFiles="true">
+            <logicalFolder name="f1" displayName="src" projectFiles="true">
+              <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/src/drv_tmr_variant_mapping.h</itemPath>
+              <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/src/drv_tmr_local.h</itemPath>
+            </logicalFolder>
+            <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/drv_tmr.h</itemPath>
+            <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/drv_tmr_mapping.h</itemPath>
+            <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/drv_tmr_compatibility.h</itemPath>
           </logicalFolder>
           <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/driver.h</itemPath>
           <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/driver_common.h</itemPath>
@@ -122,7 +143,18 @@
           <logicalFolder name="f1" displayName="default" projectFiles="true">
             <logicalFolder name="f1" displayName="framework" projectFiles="true">
               <logicalFolder name="f1" displayName="driver" projectFiles="true">
-                <logicalFolder name="f1" displayName="spi" projectFiles="true">
+                <logicalFolder name="f1" displayName="adc" projectFiles="true">
+                  <logicalFolder name="f1" displayName="src" projectFiles="true">
+                    <itemPath>../src/system_config/default/framework/driver/adc/src/drv_adc_static.c</itemPath>
+                  </logicalFolder>
+                </logicalFolder>
+                <logicalFolder name="f2" displayName="oc" projectFiles="true">
+                  <logicalFolder name="f1" displayName="src" projectFiles="true">
+                    <itemPath>../src/system_config/default/framework/driver/oc/src/drv_oc_mapping.c</itemPath>
+                    <itemPath>../src/system_config/default/framework/driver/oc/src/drv_oc_static.c</itemPath>
+                  </logicalFolder>
+                </logicalFolder>
+                <logicalFolder name="f3" displayName="spi" projectFiles="true">
                   <logicalFolder name="f1" displayName="dynamic" projectFiles="true">
                     <itemPath>../src/system_config/default/framework/driver/spi/dynamic/drv_spi_tasks.c</itemPath>
                     <itemPath>../src/system_config/default/framework/driver/spi/dynamic/drv_spi_api.c</itemPath>
@@ -174,6 +206,13 @@
                 <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/spi/src/dynamic/drv_spi.c</itemPath>
               </logicalFolder>
               <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/spi/src/drv_spi_sys_queue_fifo.c</itemPath>
+            </logicalFolder>
+          </logicalFolder>
+          <logicalFolder name="f3" displayName="tmr" projectFiles="true">
+            <logicalFolder name="f1" displayName="src" projectFiles="true">
+              <logicalFolder name="f1" displayName="dynamic" projectFiles="true">
+                <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/src/dynamic/drv_tmr.c</itemPath>
+              </logicalFolder>
             </logicalFolder>
           </logicalFolder>
         </logicalFolder>

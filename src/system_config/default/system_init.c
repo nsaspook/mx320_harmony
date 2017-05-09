@@ -91,6 +91,26 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // Section: Driver Initialization Data
 // *****************************************************************************
 // *****************************************************************************
+// <editor-fold defaultstate="collapsed" desc="DRV_I2C Initialization Data">
+// *****************************************************************************
+/* I2C Driver Initialization Data
+*/
+
+const DRV_I2C_INIT drvI2C0InitData =
+{
+    .i2cId = DRV_I2C_PERIPHERAL_ID_IDX0,
+    .i2cMode = DRV_I2C_OPERATION_MODE_IDX0,
+    .baudRate = DRV_I2C_BAUD_RATE_IDX0,
+    .busspeed = DRV_I2C_SLEW_RATE_CONTROL_IDX0,
+    .buslevel = DRV_I2C_SMBus_SPECIFICATION_IDX0,
+    .mstrInterruptSource = DRV_I2C_MASTER_INT_SRC_IDX0,
+    .errInterruptSource = DRV_I2C_ERR_MX_INT_SRC_IDX0,
+};
+
+
+
+
+// </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_SPI Initialization Data"> 
  /*** SPI Driver Initialization Data ***/
   /*** Index 0  ***/
@@ -114,6 +134,20 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
     .queueSize = DRV_SPI_QUEUE_SIZE_IDX0,
     .jobQueueReserveSize = DRV_SPI_RESERVED_JOB_IDX0,
  };
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="DRV_Timer Initialization Data">
+/*** TMR Driver Initialization Data ***/
+
+const DRV_TMR_INIT drvTmr0InitData =
+{
+    .moduleInit.sys.powerState = DRV_TMR_POWER_STATE_IDX0,
+    .tmrId = DRV_TMR_PERIPHERAL_ID_IDX0,
+    .clockSource = DRV_TMR_CLOCK_SOURCE_IDX0, 
+    .prescale = DRV_TMR_PRESCALE_IDX0,
+    .mode = DRV_TMR_OPERATION_MODE_16_BIT,
+    .interruptSource = DRV_TMR_INTERRUPT_SOURCE_IDX0,
+    .asyncWriteEnable = false,
+};
 // </editor-fold>
 
 // *****************************************************************************
@@ -164,6 +198,13 @@ void SYS_Initialize ( void* data )
     SYS_PORTS_Initialize();
 
     /* Initialize Drivers */
+    sysObj.drvI2C0 = DRV_I2C_Initialize(DRV_I2C_INDEX_0, (SYS_MODULE_INIT *)&drvI2C0InitData);
+
+
+    SYS_INT_VectorPrioritySet(INT_VECTOR_I2C1, INT_PRIORITY_LEVEL1);
+    SYS_INT_VectorSubprioritySet(INT_VECTOR_I2C1, INT_SUBPRIORITY_LEVEL0);
+
+
 
     /*** SPI Driver Index 0 initialization***/
 
@@ -171,6 +212,19 @@ void SYS_Initialize ( void* data )
     SYS_INT_VectorSubprioritySet(DRV_SPI_INT_VECTOR_IDX0, DRV_SPI_INT_SUB_PRIORITY_IDX0);
     sysObj.spiObjectIdx0 = DRV_SPI_Initialize(DRV_SPI_INDEX_0, (const SYS_MODULE_INIT  * const)&drvSpi0InitData);
 
+    /* Initialize ADC */
+    DRV_ADC_Initialize();
+
+    /* Initialize the OC Driver */
+    DRV_OC0_Initialize();
+
+    sysObj.drvTmr0 = DRV_TMR_Initialize(DRV_TMR_INDEX_0, (SYS_MODULE_INIT *)&drvTmr0InitData);
+
+    SYS_INT_VectorPrioritySet(INT_VECTOR_T1, INT_PRIORITY_LEVEL1);
+    SYS_INT_VectorSubprioritySet(INT_VECTOR_T1, INT_SUBPRIORITY_LEVEL0);
+ 
+ 
+ 
     /* Initialize System Services */
 
     /*** Interrupt Service Initialization Code ***/

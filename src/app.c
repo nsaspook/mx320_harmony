@@ -57,6 +57,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "../mx32_harm.X/OledDriver.h"
 #include "../mx32_harm.X/OledChar.h"
 #include "../mx32_harm.X/OledGrph.h"
+#include "bioshield.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -141,7 +142,7 @@ void APP_Initialize(void)
 
 void APP_Tasks(void)
 {
-	static uint32_t i = 0, j = 0, irow = 0;
+	static uint32_t i = 0, j = 0, irow = 0, update_speed = 60000;
 	static uint8_t cylon = 0xff;
 	static int32_t alive_led = 0;
 	static bool LED_UP = true;
@@ -163,8 +164,13 @@ void APP_Tasks(void)
 
 	case APP_STATE_SERVICE_TASKS:
 	{
-		if (i++ > 60000) {
+		if (i++ > update_speed) {
 			i = 0;
+			if (pbsw4) {
+				update_speed = 10000;
+			} else {
+				update_speed = 60000;
+			}
 
 			if (j++ >= 1) { // delay a bit ok
 				if (0) { // screen status feedback
