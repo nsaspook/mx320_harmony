@@ -20,7 +20,7 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+ */
 /************************************************************************/
 /*  File Description:													*/
 /*																		*/
@@ -32,6 +32,7 @@
 /*	04/29/2011(GeneA): created											*/
 /*																		*/
 /************************************************************************/
+#include <stdint.h>
 
 #if !defined(OLEDDRIVER_INC)
 #define	OLEDDRIVER_INC
@@ -51,7 +52,7 @@
 #define	cbOledFontUser	(chOledUserMax*cbOledChar)
 
 /* Graphics drawing modes.
-*/
+ */
 #define	modOledSet		0
 #define	modOledOr		1
 #define	modOledAnd		2
@@ -62,7 +63,7 @@
 /* ------------------------------------------------------------ */
 
 /* Pin definitions for access to OLED control signals on ChipKitUno and ChipKitMax
-*/
+ */
 
 #define prtVddCtrl PORTFbits.RF6
 #define prtVbatCtrl PORTFbits.RF5
@@ -70,33 +71,33 @@
 #define prtReset PORTGbits.RG9
 
 #if defined (_BOARD_UNO_) || defined(_BOARD_UC32_)
-	#define	prtVddCtrl	IOPORT_F
-	#define	prtVbatCtrl IOPORT_F
-	#define	prtDataCmd	IOPORT_F
-	#define	prtReset	IOPORT_G
+#define	prtVddCtrl	IOPORT_F
+#define	prtVbatCtrl IOPORT_F
+#define	prtDataCmd	IOPORT_F
+#define	prtReset	IOPORT_G
 
-	#define	bitVddCtrl	BIT_6
-	#define	bitVbatCtrl	BIT_5
-	#define bitDataCmd	BIT_4
-	#define	bitReset	BIT_9
+#define	bitVddCtrl	BIT_6
+#define	bitVbatCtrl	BIT_5
+#define bitDataCmd	BIT_4
+#define	bitReset	BIT_9
 #elif defined (_BOARD_MEGA_)
-	#define prtMosi		IOPORT_C
-	#define prtMiso		IOPORT_A
-	#define prtSck		IOPORT_A
+#define prtMosi		IOPORT_C
+#define prtMiso		IOPORT_A
+#define prtSck		IOPORT_A
 
-	#define	prtVddCtrl	IOPORT_G
-	#define	prtVbatCtrl IOPORT_G
-	#define	prtDataCmd	IOPORT_G
-	#define	prtReset	IOPORT_D
+#define	prtVddCtrl	IOPORT_G
+#define	prtVbatCtrl IOPORT_G
+#define	prtDataCmd	IOPORT_G
+#define	prtReset	IOPORT_D
 
-	#define bitMosi		BIT_4
-	#define bitMiso		BIT_2
-	#define bitSck		BIT_3
+#define bitMosi		BIT_4
+#define bitMiso		BIT_2
+#define bitSck		BIT_3
 
-	#define	bitVddCtrl	BIT_14
-	#define	bitVbatCtrl	BIT_13
-	#define bitDataCmd	BIT_12
-	#define	bitReset	BIT_4
+#define	bitVddCtrl	BIT_14
+#define	bitVbatCtrl	BIT_13
+#define bitDataCmd	BIT_12
+#define	bitReset	BIT_4
 #endif
 
 
@@ -117,13 +118,15 @@
 /*					Procedure Declarations						*/
 /* ------------------------------------------------------------ */
 
-void	OledInit();
-void	OledTerm();
-void	OledDisplayOn();
-void	OledDisplayOff();
-void	OledClear();
-void	OledClearBuffer();
-void	OledUpdate();
+void OledInit();
+void OledTerm();
+void OledDisplayOn();
+void OledDisplayOff();
+void OledClear();
+void OledClearBuffer();
+void OledUpdate();
+void BSP_DelayUs(uint16_t);
+void DelayMs(uint32_t);
 
 /* ------------------------------------------------------------ */
 

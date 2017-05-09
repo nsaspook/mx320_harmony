@@ -107,9 +107,7 @@ uint8_t rgbOledBmp[cbOledDispMax];
 // Harmony SPI Driver
 DRV_HANDLE SPIHandle;
 DRV_SPI_BUFFER_HANDLE Write_Buffer_Handle;
-DRV_SPI_BUFFER_HANDLE Read_Buffer_Handle;
 uint8_t TXbuffer[16];
-uint8_t RXbuffer[16];
 
 /* ------------------------------------------------------------ */
 /*				Forward Declarations							*/
@@ -122,8 +120,6 @@ void OledDevTerm();
 void OledDvrInit();
 
 void OledPutBuffer(int cb, uint8_t * rgbTx);
-uint8_t Spi2PutByte(uint8_t bVal);
-
 
 #define READ_CORE_TIMER()                 _CP0_GET_COUNT()          // Read the MIPS Core Timer
 
@@ -163,7 +159,6 @@ void DelayMs(uint32_t delay)
 
 void OledInit(void)
 {
-
 	/* Init the PIC32 peripherals used to talk to the display.
 	 */
 	OledHostInit();
@@ -200,8 +195,7 @@ void OledInit(void)
  **		Shut down the OLED display.
  */
 
-void
-OledTerm()
+void OledTerm(void)
 {
 
 	/* Shut down the OLED display hardware.
@@ -230,12 +224,9 @@ OledTerm()
  **	Description:
  **		Perform PIC32 device initialization to prepare for use
  **		of the OLED display.
- **		This is currently hard coded for the Cerebot 32MX4 and
- **		SPI2. This needs to be generalized.
  */
 
-void
-OledHostInit()
+void OledHostInit(void)
 {
 	prtVddCtrl = 1;
 	prtVbatCtrl = 1;
@@ -266,8 +257,7 @@ OledHostInit()
  **		Release processor resources used by the library
  */
 
-void
-OledHostTerm()
+void OledHostTerm(void)
 {
 
 
@@ -385,11 +375,20 @@ void OledDevInit(void)
 
 void OledDevTerm(void)
 {
-
 	/* Send the Display Off command.
 	 */
 
+	TXbuffer[0] = cmdOledDisplayOff;
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 1, 0, 0);
 
+	/* Turn off VCC
+	 */
+	prtVbatCtrl = 1;
+	DelayMs(100);
+
+	/* Turn off VDD
+	 */
+	prtVddCtrl = 1;
 }
 
 /* ------------------------------------------------------------ */
@@ -411,10 +410,11 @@ void OledDevTerm(void)
  **		is send the display on command.
  */
 
-void
-OledDisplayOn()
+void OledDisplayOn(void)
 {
-
+	prtDataCmd = 0;
+	TXbuffer[0] = cmdOledDisplayOn;
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 1, 0, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -435,10 +435,11 @@ OledDisplayOn()
  **		down. All it does is send the display off command.
  */
 
-void
-OledDisplayOff()
+void OledDisplayOff(void)
 {
-
+	prtDataCmd = 0;
+	TXbuffer[0] = cmdOledDisplayOff;
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 1, 0, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -459,13 +460,10 @@ OledDisplayOff()
  **		updates the display.
  */
 
-void
-OledClear()
+void OledClear(void)
 {
-
 	OledClearBuffer();
 	OledUpdate();
-
 }
 
 /* ------------------------------------------------------------ */
@@ -485,8 +483,7 @@ OledClear()
  **		Clear the display memory buffer.
  */
 
-void
-OledClearBuffer()
+void OledClearBuffer(void)
 {
 	int ib;
 	uint8_t * pb;
@@ -573,81 +570,6 @@ void OledPutBuffer(int cb, uint8_t * rgbTx)
 {
 	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) rgbTx, cb, 0, 0);
 }
-
-
-/* ------------------------------------------------------------ */
-/***	Spi2PutByte
- **
- **	Parameters:
- **		bVal		- byte value to write
- **
- **	Return Value:
- **		Returns byte read
- **
- **	Errors:
- **		none
- **
- **	Description:
- **		Write/Read a byte on SPI port 2
- */
-#if defined (_BOARD_UNO_) || defined(_BOARD_UC32_)
-
-uint8_t
-Spi2PutByte(uint8_t bVal)
-{
-	uint8_t bRx;
-
-	/* Wait for transmitter to be ready
-	 */
-	while (SPI2STATbits.SPITBE == 0);
-
-	/* Write the next transmit byte.
-	 */
-	SPI2BUF = bVal;
-
-	/* Wait for receive byte.
-	 */
-	while (SPI2STATbits.SPIRBF == 0);
-
-	/* Put the received byte in the buffer.
-	 */
-	bRx = SPI2BUF;
-
-	return bRx;
-
-}
-#elif defined (_BOARD_MEGA_)
-
-uint8_t
-Spi2PutByte(uint8_t bVal)
-{
-	int bit;
-	uint8_t bRx;
-
-	for (bit = 0; bit < 8; bit++) {
-		/* Check if MSB is 1 or 0 and set MOSI pin accordingly
-		 */
-		if (bVal & 0x80)
-			PORTSetBits(prtMosi, bitMosi);
-		else
-			PORTClearBits(prtMosi, bitMosi);
-
-		/* Lower the clock line
-		 */
-		PORTClearBits(prtSck, bitSck);
-
-		/* Shift byte being sent to the left by 1
-		 */
-		bVal <<= 1;
-
-		/* Raise the clock line
-		 */
-		PORTSetBits(prtSck, bitSck);
-	}
-
-	return bRx;
-}
-#endif
 
 /* ------------------------------------------------------------ */
 /***	ProcName

@@ -114,23 +114,6 @@ APP_DATA appData;
  */
 extern uint8_t rgbOledBmp[];
 
-#define READ_CORE_TIMER()                 _CP0_GET_COUNT()          // Read the MIPS Core Timer
-
-void BSP_DelayUs(uint16_t microseconds)
-{
-	uint32_t time;
-
-	time = READ_CORE_TIMER(); // Read Core Timer    
-	time += (SYS_CLK_FREQ / 2 / 1000000) * microseconds; // calc the Stop Time    
-	while ((int32_t) (time - READ_CORE_TIMER()) > 0) {
-	};
-}
-
-void DelayMs(uint32_t delay)
-{
-	BSP_DelayUs(delay * 1000);
-}
-
 void APP_Initialize(void)
 {
 	/* Place the App state machine in its initial state. */
@@ -142,7 +125,7 @@ void APP_Initialize(void)
 	 * 
 	 * basic io shield display init
 	 */
-	
+
 	OledInit();
 
 }
