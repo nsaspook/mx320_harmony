@@ -270,7 +270,7 @@ void APP_Tasks(void)
 
 	case APP_STATE_SERVICE_TASKS:
 	{
-		if (i++ > 100000) {
+		if (i++ > 10000) {
 			i = 0;
 
 			if (j++ >= 1) { // delay a bit ok
@@ -279,6 +279,10 @@ void APP_Tasks(void)
 				} else {
 					PORTE = cylon; // roll leds cylon style (inverted)
 				}
+				for (i = 0; i < cbOledDispMax; i++) {
+					rgbOledBmp[i] = cylon;
+				}
+				i = 0;
 
 				if (LED_UP && (alive_led != 0)) {
 					alive_led = alive_led << 1;
@@ -298,6 +302,7 @@ void APP_Tasks(void)
 				}
 				j = 0;
 			}
+			OledUpdate();
 		}
 		break;
 	}
