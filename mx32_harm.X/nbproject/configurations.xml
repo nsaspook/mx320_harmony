@@ -5,6 +5,11 @@
                    displayName="Header Files"
                    projectFiles="true">
       <logicalFolder name="f2" displayName="app" projectFiles="true">
+        <logicalFolder name="f2" displayName="Oled" projectFiles="true">
+          <itemPath>OledChar.h</itemPath>
+          <itemPath>OledDriver.h</itemPath>
+          <itemPath>OledGrph.h</itemPath>
+        </logicalFolder>
         <logicalFolder name="f1" displayName="system_config" projectFiles="true">
           <logicalFolder name="f1" displayName="default" projectFiles="true">
             <logicalFolder name="f1" displayName="framework" projectFiles="true">
@@ -97,6 +102,13 @@
                    displayName="Source Files"
                    projectFiles="true">
       <logicalFolder name="f1" displayName="app" projectFiles="true">
+        <logicalFolder name="f2" displayName="Oled" projectFiles="true">
+          <itemPath>ChrFont0.c</itemPath>
+          <itemPath>FillPat.c</itemPath>
+          <itemPath>OledChar.c</itemPath>
+          <itemPath>OledDriver.c</itemPath>
+          <itemPath>OledGrph.c</itemPath>
+        </logicalFolder>
         <logicalFolder name="f1" displayName="system_config" projectFiles="true">
           <logicalFolder name="f1" displayName="default" projectFiles="true">
             <logicalFolder name="f1" displayName="framework" projectFiles="true">
@@ -169,6 +181,7 @@
     <Elem>../src/default</Elem>
     <Elem>../src/system_config/default</Elem>
     <Elem>../../../../root/microchip/harmony/v2_02_00b</Elem>
+    <Elem>../../../../IOShieldOled/utility</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

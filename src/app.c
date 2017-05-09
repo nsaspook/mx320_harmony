@@ -54,12 +54,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 
 #include "app.h"
-#ifdef __XC32
-#include <xc.h> 
-#endif
-#include <stdint.h>
-#include <stdbool.h>
-#include <p32xxxx.h>
 
 // *****************************************************************************
 // *****************************************************************************
@@ -270,7 +264,7 @@ void APP_Tasks(void)
 
 	case APP_STATE_SERVICE_TASKS:
 	{
-		if (i++ > 10000) {
+		if (i++ > 60000) {
 			i = 0;
 
 			if (j++ >= 1) { // delay a bit ok
