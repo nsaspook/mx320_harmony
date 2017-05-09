@@ -20,7 +20,7 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+ */
 /************************************************************************/
 /*  File Description:													*/
 /*																		*/
@@ -65,13 +65,13 @@
 /*					Procedure Declarations						*/
 /* ------------------------------------------------------------ */
 
-void	OledSetCursor(int xch, int ych);
-void	OledGetCursor(int * pxcy, int * pych);
-int		OledDefUserChar(char ch, uint8_t * pbDef);
-void	OledSetCharUpdate(int f);
-int		OledGetCharUpdate();
-void	OledPutChar(char ch);
-void	OledPutString(char * sz);
+void OledSetCursor(int xch, int ych);
+void OledGetCursor(int * pxcy, int * pych);
+int OledDefUserChar(char ch, uint8_t * pbDef);
+void OledSetCharUpdate(int f);
+int OledGetCharUpdate();
+void OledPutChar(char ch);
+void OledPutString(char * sz);
 
 /* ------------------------------------------------------------ */
 

@@ -44,9 +44,7 @@
 /*				Include File Definitions						*/
 /* ------------------------------------------------------------ */
 
-//#include <WProgram.h>
 #include <p32xxxx.h>
-//#include <plib.h>
 
 #include "OledDriver.h"
 #include "OledChar.h"
@@ -259,7 +257,7 @@ void OledHostInit(void)
 
 void OledHostTerm(void)
 {
-
+	// does nothing, the display and SPI port remains active
 
 }
 

@@ -20,7 +20,7 @@
   You should have received a copy of the GNU Lesser General Public
   License along with this library; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+ */
 /************************************************************************/
 /*  File Description:													*/
 /*																		*/
@@ -62,23 +62,23 @@
 /*					Procedure Declarations						*/
 /* ------------------------------------------------------------ */
 
-void		OledSetDrawColor(uint8_t clr);
-void		OledSetDrawMode(int mod);
-int			OledGetDrawMode();
-uint8_t *	OledGetStdPattern(int ipat);
-void		OledSetFillPattern(uint8_t * pbPat);
+void OledSetDrawColor(uint8_t clr);
+void OledSetDrawMode(int mod);
+int OledGetDrawMode();
+uint8_t * OledGetStdPattern(int ipat);
+void OledSetFillPattern(uint8_t * pbPat);
 
-void	OledMoveTo(int xco, int yco);
-void	OledGetPos(int * pxco, int * pyco);
-void	OledDrawPixel();
-uint8_t	OledGetPixel();
-void	OledLineTo(int xco, int yco);
-void	OledDrawRect(int xco, int yco);
-void	OledFillRect(int xco, int yco);
-void	OledGetBmp(int dxco, int dyco, uint8_t * pbBmp);
-void	OledPutBmp(int dxco, int dyco, uint8_t * pbBmp);
-void	OledDrawChar(char ch);
-void	OledDrawString(char * sz);
+void OledMoveTo(int xco, int yco);
+void OledGetPos(int * pxco, int * pyco);
+void OledDrawPixel();
+uint8_t OledGetPixel();
+void OledLineTo(int xco, int yco);
+void OledDrawRect(int xco, int yco);
+void OledFillRect(int xco, int yco);
+void OledGetBmp(int dxco, int dyco, uint8_t * pbBmp);
+void OledPutBmp(int dxco, int dyco, uint8_t * pbBmp);
+void OledDrawChar(char ch);
+void OledDrawString(char * sz);
 
 /* ------------------------------------------------------------ */
 
