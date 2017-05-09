@@ -55,6 +55,8 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #include "app.h"
 #include "../mx32_harm.X/OledDriver.h"
+#include "../mx32_harm.X/OledChar.h"
+#include "../mx32_harm.X/OledGrph.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -112,7 +114,6 @@ APP_DATA appData;
   Remarks:
     See prototype in app.h.
  */
-extern uint8_t rgbOledBmp[];
 
 void APP_Initialize(void)
 {
@@ -140,7 +141,7 @@ void APP_Initialize(void)
 
 void APP_Tasks(void)
 {
-	static uint32_t i = 0, j = 0;
+	static uint32_t i = 0, j = 0, irow = 0;
 	static uint8_t cylon = 0xff;
 	static int32_t alive_led = 0;
 	static bool LED_UP = true;
@@ -171,10 +172,6 @@ void APP_Tasks(void)
 				} else {
 					PORTE = cylon; // roll leds cylon style (inverted)
 				}
-				for (i = 0; i < cbOledDispMax; i++) {
-					rgbOledBmp[i] = cylon;
-				}
-				i = 0;
 
 				if (LED_UP && (alive_led != 0)) {
 					alive_led = alive_led << 1;
@@ -194,7 +191,22 @@ void APP_Tasks(void)
 				}
 				j = 0;
 			}
+			OledClearBuffer();
+			OledSetCursor(0, 0);
+			OledPutString("MCHP   AAC   ");
+			OledSetCursor(0, 1);
+			OledPutString("chipKIT Uno32");
+			OledSetCursor(0, 2);
+			OledPutString("Basic I/O Shield");
+			OledSetCursor(0, 3);
+			OledPutString("XC32 & Harmony 2");
+
+			OledMoveTo(0, irow & 31);
+			OledDrawRect(127, 31);
+			OledMoveTo(0, irow & 31);
+			OledLineTo(127, irow & 31);
 			OledUpdate();
+			irow++;
 		}
 		break;
 	}
