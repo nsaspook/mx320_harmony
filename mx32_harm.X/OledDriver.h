@@ -63,6 +63,12 @@
 
 /* Pin definitions for access to OLED control signals on ChipKitUno and ChipKitMax
 */
+
+#define prtVddCtrl PORTFbits.RF6
+#define prtVbatCtrl PORTFbits.RF5
+#define prtDataCmd PORTFbits.RF4
+#define prtReset PORTGbits.RG9
+
 #if defined (_BOARD_UNO_) || defined(_BOARD_UC32_)
 	#define	prtVddCtrl	IOPORT_F
 	#define	prtVbatCtrl IOPORT_F

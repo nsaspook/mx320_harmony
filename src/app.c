@@ -54,6 +54,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 
 #include "app.h"
+#include "../mx32_harm.X/OledDriver.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -77,28 +78,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
  */
 
 APP_DATA appData;
-
-DRV_HANDLE SPIHandle;
-DRV_SPI_BUFFER_HANDLE Write_Buffer_Handle;
-DRV_SPI_BUFFER_HANDLE Read_Buffer_Handle;
-uint8_t TXbuffer[16];
-uint8_t RXbuffer[16];
-
-#define cbOledDispMax 512
-//max number of bytes in display buffer
-#define ccolOledMax 128
-//number of display columns
-#define crowOledMax 32
-//number of display rows
-#define cpagOledMax 4
-//number of display memory pages
-
-uint8_t rgbOledBmp[cbOledDispMax] = {
-	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
-	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff
-};
-
 
 // *****************************************************************************
 // *****************************************************************************
@@ -133,6 +112,7 @@ uint8_t rgbOledBmp[cbOledDispMax] = {
   Remarks:
     See prototype in app.h.
  */
+extern uint8_t rgbOledBmp[];
 
 #define READ_CORE_TIMER()                 _CP0_GET_COUNT()          // Read the MIPS Core Timer
 
@@ -151,42 +131,6 @@ void DelayMs(uint32_t delay)
 	BSP_DelayUs(delay * 1000);
 }
 
-void OledPutBuffer(int cb, uint8_t * rgbTx)
-{
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) rgbTx, cb, 0, 0);
-}
-
-void OledUpdate(void)
-{
-	int ipag;
-	int icol;
-	uint8_t* pb;
-
-	pb = rgbOledBmp;
-
-	for (ipag = 0; ipag < cpagOledMax; ipag++) {
-		prtDataCmd = 0;
-		/* Set the page address
-		 */
-		//Set page command
-		//page number
-		/* Start at the left column
-		 */
-		//set low nybble of column
-		//set high nybble of column
-		TXbuffer[0] = 0x22;
-		TXbuffer[1] = ipag;
-		TXbuffer[2] = 0x00;
-		TXbuffer[3] = 0x10;
-		Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 4, 0, 0);
-		prtDataCmd = 1;
-		/* Copy this memory page of display data.
-		 */
-		OledPutBuffer(ccolOledMax, pb);
-		pb += ccolOledMax;
-	}
-}
-
 void APP_Initialize(void)
 {
 	/* Place the App state machine in its initial state. */
@@ -198,37 +142,8 @@ void APP_Initialize(void)
 	 * 
 	 * basic io shield display init
 	 */
-	prtVddCtrl = 1;
-	prtVbatCtrl = 1;
-	prtDataCmd = 0;
-	prtReset = 1;
-
-	/* config display hardware */
-	prtDataCmd = 0;
-	prtVddCtrl = 0;
-	DelayMs(1);
-	SPIHandle = DRV_SPI_Open(DRV_SPI_INDEX_0, DRV_IO_INTENT_WRITE);
-	TXbuffer[0] = 0xAE;
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 1, 0, 0);
-	prtReset = 0;
-	DelayMs(1);
-	prtReset = 1;
-	TXbuffer[0] = 0x8D;
-	TXbuffer[1] = 0x14;
-	TXbuffer[2] = 0xD9;
-	TXbuffer[3] = 0xF1;
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 4, 0, 0);
-	prtVbatCtrl = 0;
-	DelayMs(100); // 100 ms
-	TXbuffer[0] = 0xA1;
-	TXbuffer[1] = 0xC8;
-	TXbuffer[2] = 0xDA;
-	TXbuffer[3] = 0x20;
-	TXbuffer[4] = 0xAF;
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 5, 0, 0);
-
-	OledUpdate();
-
+	
+	OledInit();
 
 }
 

@@ -51,6 +51,7 @@
 #include "OledDriver.h"
 #include "OledChar.h"
 #include "OledGrph.h"
+#include "app.h"
 
 /* ------------------------------------------------------------ */
 /*				Local Symbol Definitions						*/
@@ -103,6 +104,13 @@ uint8_t * pbOledFontUser;
  */
 uint8_t rgbOledBmp[cbOledDispMax];
 
+// Harmony SPI Driver
+DRV_HANDLE SPIHandle;
+DRV_SPI_BUFFER_HANDLE Write_Buffer_Handle;
+DRV_SPI_BUFFER_HANDLE Read_Buffer_Handle;
+uint8_t TXbuffer[16];
+uint8_t RXbuffer[16];
+
 /* ------------------------------------------------------------ */
 /*				Forward Declarations							*/
 /* ------------------------------------------------------------ */
@@ -115,6 +123,24 @@ void OledDvrInit();
 
 void OledPutBuffer(int cb, uint8_t * rgbTx);
 uint8_t Spi2PutByte(uint8_t bVal);
+
+
+#define READ_CORE_TIMER()                 _CP0_GET_COUNT()          // Read the MIPS Core Timer
+
+void BSP_DelayUs(uint16_t microseconds)
+{
+	uint32_t time;
+
+	time = READ_CORE_TIMER(); // Read Core Timer    
+	time += (SYS_CLK_FREQ / 2 / 1000000) * microseconds; // calc the Stop Time    
+	while ((int32_t) (time - READ_CORE_TIMER()) > 0) {
+	};
+}
+
+void DelayMs(uint32_t delay)
+{
+	BSP_DelayUs(delay * 1000);
+}
 
 /* ------------------------------------------------------------ */
 /*				Procedure Definitions							*/
@@ -135,8 +161,7 @@ uint8_t Spi2PutByte(uint8_t bVal);
  **		Initialize the OLED display subsystem.
  */
 
-void
-OledInit()
+void OledInit(void)
 {
 
 	/* Init the PIC32 peripherals used to talk to the display.
@@ -212,8 +237,16 @@ OledTerm()
 void
 OledHostInit()
 {
+	prtVddCtrl = 1;
+	prtVbatCtrl = 1;
+	prtDataCmd = 0;
+	prtReset = 1;
 
-
+	/* config display hardware */
+	prtDataCmd = 0;
+	prtVddCtrl = 0;
+	DelayMs(1);
+	SPIHandle = DRV_SPI_Open(DRV_SPI_INDEX_0, DRV_IO_INTENT_WRITE);
 }
 
 /* ------------------------------------------------------------ */
@@ -257,8 +290,7 @@ OledHostTerm()
  **		Initialize the OLED software system
  */
 
-void
-OledDvrInit()
+void OledDvrInit(void)
 {
 	int ib;
 
@@ -310,12 +342,28 @@ OledDvrInit()
  **		Initialize the OLED display controller and turn the display on.
  */
 
-void
-OledDevInit()
+void OledDevInit(void)
 {
+	TXbuffer[0] = 0xAE;
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 1, 0, 0);
+	prtReset = 0;
+	DelayMs(1);
+	prtReset = 1;
+	TXbuffer[0] = 0x8D;
+	TXbuffer[1] = 0x14;
+	TXbuffer[2] = 0xD9;
+	TXbuffer[3] = 0xF1;
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 4, 0, 0);
+	prtVbatCtrl = 0;
+	DelayMs(100); // 100 ms
+	TXbuffer[0] = 0xA1;
+	TXbuffer[1] = 0xC8;
+	TXbuffer[2] = 0xDA;
+	TXbuffer[3] = 0x20;
+	TXbuffer[4] = 0xAF;
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 5, 0, 0);
 
-
-
+	OledUpdate();
 }
 
 /* ------------------------------------------------------------ */
@@ -335,8 +383,7 @@ OledDevInit()
  **		Shut down the OLED display hardware
  */
 
-void
-OledDevTerm()
+void OledDevTerm(void)
 {
 
 	/* Send the Display Off command.
@@ -368,7 +415,6 @@ void
 OledDisplayOn()
 {
 
-
 }
 
 /* ------------------------------------------------------------ */
@@ -392,8 +438,6 @@ OledDisplayOn()
 void
 OledDisplayOff()
 {
-
-
 
 }
 
@@ -474,14 +518,39 @@ OledClearBuffer()
  **		Update the OLED display with the contents of the memory buffer
  */
 
-void
-OledUpdate()
+void OledUpdate(void)
 {
+	int ipag;
+	int icol;
+	uint8_t* pb;
 
+	pb = rgbOledBmp;
 
+	for (ipag = 0; ipag < cpagOledMax; ipag++) {
+		prtDataCmd = 0;
+		/* Set the page address
+		 */
+		//Set page command
+		//page number
+		/* Start at the left column
+		 */
+		//set low nybble of column
+		//set high nybble of column
+		TXbuffer[0] = 0x22;
+		TXbuffer[1] = ipag;
+		TXbuffer[2] = 0x00;
+		TXbuffer[3] = 0x10;
+		Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 4, 0, 0);
+		prtDataCmd = 1;
+		/* Copy this memory page of display data.
+		 */
+		OledPutBuffer(ccolOledMax, pb);
+		pb += ccolOledMax;
+	}
 }
 
 /* ------------------------------------------------------------ */
+
 /***	OledPutBuffer
  **
  **	Parameters:
@@ -498,69 +567,13 @@ OledUpdate()
  **		Send the bytes specified in rgbTx to the slave and return
  **		the bytes read from the slave in rgbRx
  */
-#if defined (_BOARD_UNO_) || defined(_BOARD_UC32_)
 
-void
-OledPutBuffer(int cb, uint8_t * rgbTx)
+
+void OledPutBuffer(int cb, uint8_t * rgbTx)
 {
-	int ib;
-	uint8_t bTmp;
-
-	/* Write/Read the data
-	 */
-	for (ib = 0; ib < cb; ib++) {
-		/* Wait for transmitter to be ready
-		 */
-		while (SPI2STATbits.SPITBE == 0);
-
-		/* Write the next transmit byte.
-		 */
-		SPI2BUF = *rgbTx++;
-
-		/* Wait for receive byte.
-		 */
-		while (SPI2STATbits.SPIRBF == 0);
-		bTmp = SPI2BUF;
-
-	}
-
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) rgbTx, cb, 0, 0);
 }
-#elif defined (_BOARD_MEGA_)
 
-void
-OledPutBuffer(int cb, uint8_t * rgbTx)
-{
-	int ib;
-	int bit;
-	uint8_t bVal;
-
-	for (ib = 0; ib < cb; ib++) {
-
-		bVal = *rgbTx++;
-
-		for (bit = 0; bit < 8; bit++) {
-			/* Check if MSB is 1 or 0 and set MOSI pin accordingly
-			 */
-			if (bVal & 0x80)
-				PORTSetBits(prtMosi, bitMosi);
-			else
-				PORTClearBits(prtMosi, bitMosi);
-
-			/* Lower the clock line
-			 */
-			PORTClearBits(prtSck, bitSck);
-
-			/* Shift byte being sent to the left by 1
-			 */
-			bVal <<= 1;
-
-			/* Raise the clock line
-			 */
-			PORTSetBits(prtSck, bitSck);
-		}
-	}
-}
-#endif
 
 /* ------------------------------------------------------------ */
 /***	Spi2PutByte
