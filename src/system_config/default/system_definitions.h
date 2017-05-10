@@ -57,6 +57,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 #include "system/clk/sys_clk.h"
 #include "system/int/sys_int.h"
 #include "driver/adc/drv_adc_static.h"
+#include "peripheral/int/plib_int.h"
 #include "driver/tmr/drv_tmr.h"
 #include "driver/i2c/drv_i2c.h"
 #include "system/ports/sys_ports.h"

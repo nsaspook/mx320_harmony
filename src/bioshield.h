@@ -11,6 +11,12 @@
 #ifdef	__cplusplus
 extern "C" {
 #endif
+    
+#include "app.h"
+#include "../mx32_harm.X/OledDriver.h"
+#include "../mx32_harm.X/OledChar.h"
+#include "../mx32_harm.X/OledGrph.h"
+#include <stdio.h>
 
 #define ssw1 PORTDbits.RD8
 #define ssw2 PORTDbits.RD9
@@ -21,7 +27,8 @@ extern "C" {
 #define pbsw3 PORTDbits.RD6
 #define pbsw4 PORTDbits.RD7
 
-
+void BasicIO_Initialize(void);
+void board_test(void);
 #ifdef	__cplusplus
 }
 #endif
