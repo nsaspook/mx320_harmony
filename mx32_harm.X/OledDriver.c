@@ -354,14 +354,14 @@ void OledDvrInit(void)
 
 void OledDevInit(void)
 {
-	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, 1, 0, 0);
+	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, sizeof(oled_ssd1306.d_off), 0, 0);
 	prtReset = 0;
 	DelayMs(1);
 	prtReset = 1;
-	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_charge_setup, 4, 0, 0);
+	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_charge_setup, sizeof(oled_ssd1306.d_charge_setup), 0, 0);
 	prtVbatCtrl = 0;
 	DelayMs(oled_ssd1306.init_delay_msecs);
-	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_origin_memory, 5, 0, 0);
+	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_origin_memory, sizeof(oled_ssd1306.d_origin_memory), 0, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -386,7 +386,7 @@ void OledDevTerm(void)
 	/* Send the Display Off command.
 	 */
 	prtDataCmd = 0;
-	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, 1, 0, 0);
+	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, sizeof(oled_ssd1306.d_off), 0, 0);
 
 	/* Turn off VCC
 	 */
@@ -420,7 +420,7 @@ void OledDevTerm(void)
 void OledDisplayOn(void)
 {
 	prtDataCmd = 0;
-	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_on, 1, 0, 0);
+	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_on, sizeof(oled_ssd1306.d_on), 0, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -444,7 +444,7 @@ void OledDisplayOn(void)
 void OledDisplayOff(void)
 {
 	prtDataCmd = 0;
-	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, 1, 0, 0);
+	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, sizeof(oled_ssd1306.d_off), 0, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -524,7 +524,7 @@ void OledUpdate(void)
 {
 	int32_t ipag;
 	uint8_t* pb;
-	uint8_t TXbuffer[4] = {0x22, 0x00, 0x00, 0x10};
+	uint8_t TXbuffer[] = {0x22, 0x00, 0x00, 0x10};
 
 	pb = rgbOledBmp;
 
@@ -539,7 +539,7 @@ void OledUpdate(void)
 		//set low nybble of column
 		//set high nybble of column
 		TXbuffer[1] = ipag;
-		DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) & TXbuffer[0], 4, 0, 0);
+		DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) TXbuffer, sizeof(TXbuffer), 0, 0);
 		prtDataCmd = 1;
 		/* Copy this memory page of display data.
 		 */
