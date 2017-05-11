@@ -62,7 +62,7 @@
 #define	cmdOledComConfig	0xDA	//set COM hardware configuration
 #define	cmdOledComSeqLR		0x20	//sequential COM, left/right remap enabled
 
-struct oled_platform_data {
+struct oled_init_data {
 	uint32_t init_delay_msecs;
 	uint8_t d_off[1];
 	uint8_t d_on[1];
@@ -70,7 +70,7 @@ struct oled_platform_data {
 	uint8_t d_origin_memory[5];
 };
 
-static const struct oled_platform_data oled_init_data = {
+static const struct oled_init_data oled_ssd1306 = {
 	.init_delay_msecs = 100,
 	.d_off =
 	{cmdOledDisplayOff},
@@ -141,7 +141,8 @@ void OledPutBuffer(int cb, uint8_t * rgbTx);
 
 #define READ_CORE_TIMER()                 _CP0_GET_COUNT()          // Read the MIPS Core Timer
 
-void BSP_DelayUs(uint32_t microseconds)
+void
+BSP_DelayUs(uint32_t microseconds)
 {
 	uint32_t time;
 
@@ -151,7 +152,8 @@ void BSP_DelayUs(uint32_t microseconds)
 	};
 }
 
-void DelayMs(uint32_t delay)
+void
+DelayMs(uint32_t delay)
 {
 	BSP_DelayUs(delay * 1000);
 }
@@ -175,7 +177,8 @@ void DelayMs(uint32_t delay)
  **		Initialize the OLED display subsystem.
  */
 
-void OledInit(void)
+void
+OledInit(void)
 {
 	/* Init the PIC32 peripherals used to talk to the display.
 	 */
@@ -213,7 +216,8 @@ void OledInit(void)
  **		Shut down the OLED display.
  */
 
-void OledTerm(void)
+void
+OledTerm(void)
 {
 
 	/* Shut down the OLED display hardware.
@@ -244,14 +248,18 @@ void OledTerm(void)
  **		of the OLED display.
  */
 
-void OledHostInit(void)
+void
+OledHostInit(void)
 {
+	/*
+	 OLED control and display power off
+	 */
 	prtVddCtrl = 1;
 	prtVbatCtrl = 1;
 	prtDataCmd = 0;
 	prtReset = 1;
 
-	/* config display hardware */
+	/* configure display hardware for SPI data */
 	prtDataCmd = 0;
 	prtVddCtrl = 0;
 	DelayMs(1);
@@ -275,10 +283,10 @@ void OledHostInit(void)
  **		Release processor resources used by the library
  */
 
-void OledHostTerm(void)
+void
+OledHostTerm(void)
 {
 	// does nothing, the display and SPI port remains active
-
 }
 
 /* ------------------------------------------------------------ */
@@ -298,7 +306,8 @@ void OledHostTerm(void)
  **		Initialize the OLED software system
  */
 
-void OledDvrInit(void)
+void
+OledDvrInit(void)
 {
 	int ib;
 
@@ -350,16 +359,17 @@ void OledDvrInit(void)
  **		Initialize the OLED display controller and turn the display on.
  */
 
-void OledDevInit(void)
+void
+OledDevInit(void)
 {
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_init_data.d_off, 1, 0, 0);
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, 1, 0, 0);
 	prtReset = 0;
 	DelayMs(1);
 	prtReset = 1;
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_init_data.d_charge_setup, 4, 0, 0);
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_charge_setup, 4, 0, 0);
 	prtVbatCtrl = 0;
-	DelayMs(oled_init_data.init_delay_msecs); // 100 ms
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_init_data.d_origin_memory, 5, 0, 0);
+	DelayMs(oled_ssd1306.init_delay_msecs); // 100 ms
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_origin_memory, 5, 0, 0);
 
 	OledUpdate();
 }
@@ -381,17 +391,18 @@ void OledDevInit(void)
  **		Shut down the OLED display hardware
  */
 
-void OledDevTerm(void)
+void
+OledDevTerm(void)
 {
 	/* Send the Display Off command.
 	 */
 	prtDataCmd = 0;
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_init_data.d_off, 1, 0, 0);
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, 1, 0, 0);
 
 	/* Turn off VCC
 	 */
 	prtVbatCtrl = 1;
-	DelayMs(oled_init_data.init_delay_msecs);
+	DelayMs(oled_ssd1306.init_delay_msecs);
 
 	/* Turn off VDD
 	 */
@@ -417,10 +428,11 @@ void OledDevTerm(void)
  **		is send the display on command.
  */
 
-void OledDisplayOn(void)
+void
+OledDisplayOn(void)
 {
 	prtDataCmd = 0;
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_init_data.d_on, 1, 0, 0);
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_on, 1, 0, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -441,10 +453,11 @@ void OledDisplayOn(void)
  **		down. All it does is send the display off command.
  */
 
-void OledDisplayOff(void)
+void
+OledDisplayOff(void)
 {
 	prtDataCmd = 0;
-	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_init_data.d_off, 1, 0, 0);
+	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_off, 1, 0, 0);
 }
 
 /* ------------------------------------------------------------ */
@@ -465,7 +478,8 @@ void OledDisplayOff(void)
  **		updates the display.
  */
 
-void OledClear(void)
+void
+OledClear(void)
 {
 	OledClearBuffer();
 	OledUpdate();
@@ -488,7 +502,8 @@ void OledClear(void)
  **		Clear the display memory buffer.
  */
 
-void OledClearBuffer(void)
+void
+OledClearBuffer(void)
 {
 	int ib;
 	uint8_t * pb;
@@ -520,17 +535,14 @@ void OledClearBuffer(void)
  **		Update the OLED display with the contents of the memory buffer
  */
 
-void OledUpdate(void)
+void
+OledUpdate(void)
 {
 	int ipag;
 	uint8_t* pb;
-	uint8_t TXbuffer[4];
+	uint8_t TXbuffer[4] = {0x22, 0x00, 0x00, 0x10};
 
 	pb = rgbOledBmp;
-
-	TXbuffer[0] = 0x22;
-	TXbuffer[2] = 0x00;
-	TXbuffer[3] = 0x10;
 
 	for (ipag = 0; ipag < cpagOledMax; ipag++) {
 		prtDataCmd = 0;
@@ -557,7 +569,7 @@ void OledUpdate(void)
 /***	OledPutBuffer
  **
  **	Parameters:
- **		cb		- number of bytes to send/receive
+ **		cb		- number of bytes to send
  **		rgbTx	- pointer to the buffer to send
  **
  **	Return Value:
@@ -567,30 +579,12 @@ void OledUpdate(void)
  **		none
  **
  **	Description:
- **		Send the bytes specified in rgbTx to the slave and return
- **		the bytes read from the slave in rgbRx
+ **		Send the bytes specified in rgbTx to the slave OLED
  */
 
 
-void OledPutBuffer(int cb, uint8_t * rgbTx)
+void
+OledPutBuffer(int cb, uint8_t * rgbTx)
 {
 	Write_Buffer_Handle = DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) rgbTx, cb, 0, 0);
 }
-
-/* ------------------------------------------------------------ */
-/***	ProcName
- **
- **	Parameters:
- **
- **	Return Value:
- **
- **	Errors:
- **
- **	Description:
- **
- */
-
-/* ------------------------------------------------------------ */
-
-/************************************************************************/
-
