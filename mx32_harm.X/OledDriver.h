@@ -41,15 +41,15 @@
 /*					Miscellaneous Declarations					*/
 /* ------------------------------------------------------------ */
 
-#define	cbOledDispMax	512		//max number of bytes in display buffer
+#define	cbOledDispMax		512		//max number of bytes in display buffer
 
 #define	ccolOledMax		128		//number of display columns
 #define	crowOledMax		32		//number of display rows
 #define	cpagOledMax		4		//number of display memory pages
 
 #define	cbOledChar		8		//font glyph definitions is 8 bytes long
-#define	chOledUserMax	0x20	//number of character defs in user font table
-#define	cbOledFontUser	(chOledUserMax*cbOledChar)
+#define	chOledUserMax		0x20	//number of character defs in user font table
+#define	cbOledFontUser		(chOledUserMax*cbOledChar)
 
 /* Graphics drawing modes.
  */
@@ -62,45 +62,13 @@
 /*					General Type Declarations					*/
 /* ------------------------------------------------------------ */
 
-/* Pin definitions for access to OLED control signals on ChipKitUno and ChipKitMax
+/* Pin definitions for access to OLED control signals on ChipKitUno
  */
 
-#define prtVddCtrl PORTFbits.RF6
-#define prtVbatCtrl PORTFbits.RF5
-#define prtDataCmd PORTFbits.RF4
-#define prtReset PORTGbits.RG9
-
-#if defined (_BOARD_UNO_) || defined(_BOARD_UC32_)
-#define	prtVddCtrl	IOPORT_F
-#define	prtVbatCtrl IOPORT_F
-#define	prtDataCmd	IOPORT_F
-#define	prtReset	IOPORT_G
-
-#define	bitVddCtrl	BIT_6
-#define	bitVbatCtrl	BIT_5
-#define bitDataCmd	BIT_4
-#define	bitReset	BIT_9
-#elif defined (_BOARD_MEGA_)
-#define prtMosi		IOPORT_C
-#define prtMiso		IOPORT_A
-#define prtSck		IOPORT_A
-
-#define	prtVddCtrl	IOPORT_G
-#define	prtVbatCtrl IOPORT_G
-#define	prtDataCmd	IOPORT_G
-#define	prtReset	IOPORT_D
-
-#define bitMosi		BIT_4
-#define bitMiso		BIT_2
-#define bitSck		BIT_3
-
-#define	bitVddCtrl	BIT_14
-#define	bitVbatCtrl	BIT_13
-#define bitDataCmd	BIT_12
-#define	bitReset	BIT_4
-#endif
-
-
+#define prtVddCtrl	PORTFbits.RF6
+#define prtVbatCtrl	PORTFbits.RF5
+#define prtDataCmd	PORTFbits.RF4
+#define prtReset	PORTGbits.RG9
 
 /* ------------------------------------------------------------ */
 /*					Object Class Declarations					*/
