@@ -125,7 +125,7 @@ void OledDisplayOff();
 void OledClear();
 void OledClearBuffer();
 void OledUpdate();
-void BSP_DelayUs(uint16_t);
+void BSP_DelayUs(uint32_t);
 void DelayMs(uint32_t);
 
 /* ------------------------------------------------------------ */

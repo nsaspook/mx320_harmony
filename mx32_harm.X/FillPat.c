@@ -47,7 +47,6 @@
 
 #include <p32xxxx.h>
 #include <stdint.h>
-//#include <plib.h>
 
 /* ------------------------------------------------------------ */
 /*				Global Variables								*/

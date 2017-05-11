@@ -528,7 +528,7 @@ OledFillRect(int xco, int yco)
 	uint8_t * pbCur;
 	uint8_t * pbLeft;
 	int xcoCur;
-	uint8_t bTmp;
+//	uint8_t bTmp;
 	uint8_t mskPat;
 
 	/* Clamp the point to be on the display.
@@ -636,7 +636,7 @@ OledGetBmp(int dxco, int dyco, uint8_t * pbBits)
 	int xcoCur;
 	int bnAlign;
 	uint8_t mskEnd;
-	uint8_t bTmp;
+//	uint8_t bTmp;
 
 	/* Set up the four sides of the source rectangle.
 	 */
@@ -680,8 +680,8 @@ OledGetBmp(int dxco, int dyco, uint8_t * pbBits)
 			}
 		} else {
 			while (xcoCur < xcoRight) {
-				bTmp = *pbDspCur;
-				bTmp = *(pbDspCur + ccolOledMax);
+//				bTmp = *pbDspCur;
+//				bTmp = *(pbDspCur + ccolOledMax);
 				*pbBmpCur = ((*pbDspCur >> bnAlign) |
 					((*(pbDspCur + ccolOledMax)) << (8 - bnAlign))) & mskEnd;
 				xcoCur += 1;
@@ -732,14 +732,14 @@ OledPutBmp(int dxco, int dyco, uint8_t * pbBits)
 	uint8_t * pbBmpCur;
 	uint8_t * pbBmpLeft;
 	int xcoCur;
-	uint8_t bDsp;
+//	uint8_t bDsp;
 	uint8_t bBmp;
 	uint8_t mskEnd;
 	uint8_t mskUpper;
 	uint8_t mskLower;
 	int bnAlign;
 	int fTop;
-	uint8_t bTmp;
+//	uint8_t bTmp;
 
 	/* Set up the four sides of the destination rectangle.
 	 */
@@ -838,8 +838,8 @@ void
 OledDrawChar(char ch)
 {
 	uint8_t * pbFont;
-	uint8_t * pbBmp;
-	int ib;
+//	uint8_t * pbBmp;
+//	int ib;
 
 	if ((ch & 0x80) != 0) {
 		return;
@@ -851,7 +851,7 @@ OledDrawChar(char ch)
 		pbFont = pbOledFontCur + (ch - chOledUserMax) * cbOledChar;
 	}
 
-	pbBmp = pbOledCur;
+//	pbBmp = pbOledCur;
 
 	OledPutBmp(dxcoOledFontCur, dycoOledFontCur, pbFont);
 
