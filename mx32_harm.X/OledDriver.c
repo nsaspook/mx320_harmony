@@ -136,8 +136,7 @@ void OledHostTerm();
 void OledDevInit();
 void OledDevTerm();
 void OledDvrInit();
-
-void OledPutBuffer(int cb, uint8_t * rgbTx);
+void OledPutBuffer(int32_t cb, uint8_t * rgbTx);
 
 #define READ_CORE_TIMER()                 _CP0_GET_COUNT()          // Read the MIPS Core Timer
 
@@ -147,7 +146,7 @@ void BSP_DelayUs(uint32_t microseconds)
 
 	time = READ_CORE_TIMER(); // Read Core Timer    
 	time += (SYS_CLK_FREQ / 2 / 1000000) * microseconds; // calc the Stop Time    
-	while ((int32_t) (time - READ_CORE_TIMER()) > 0) {
+	while ((int32_t) (time - READ_CORE_TIMER()) > 0) { // busy wait
 	};
 }
 
@@ -567,7 +566,7 @@ void OledUpdate(void)
  */
 
 
-void OledPutBuffer(int cb, uint8_t * rgbTx)
+void OledPutBuffer(int32_t cb, uint8_t * rgbTx)
 {
 	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) rgbTx, cb, 0, 0);
 }
