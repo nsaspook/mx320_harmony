@@ -204,7 +204,7 @@
       <Template dnOrder="2">
         <Name dnOrder="0">drv_adc_static.c</Name>
         <Path dnOrder="1">Source Files/app/system_config/default/framework/driver/adc/src</Path>
-        <Checksum dnOrder="2">346DD372F9AF61C80C63CCB566B81873</Checksum>
+        <Checksum dnOrder="2">2A6B1E9D36944B95A1D1B8012BAADAB5</Checksum>
       </Template>
       <Template dnOrder="3">
         <Name dnOrder="0">sys_devcon_local.h</Name>

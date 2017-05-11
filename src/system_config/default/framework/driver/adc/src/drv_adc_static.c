@@ -67,13 +67,13 @@ void DRV_ADC_Initialize(void)
     /* Select Sampling Mode */
     PLIB_ADC_SamplingModeSelect(DRV_ADC_ID_1, ADC_SAMPLING_MODE_MUXA);
     /* Number of Samples Per Interrupt */
-    PLIB_ADC_SamplesPerInterruptSelect(DRV_ADC_ID_1, ADC_16SAMPLES_PER_INTERRUPT);
+    PLIB_ADC_SamplesPerInterruptSelect(DRV_ADC_ID_1, ADC_1SAMPLE_PER_INTERRUPT);
 
     /* Conversion Selections */
     /* Select Trigger Source */
     PLIB_ADC_ConversionTriggerSourceSelect(DRV_ADC_ID_1, ADC_CONVERSION_TRIGGER_INTERNAL_COUNT);
     /* Select Result Format */
-    PLIB_ADC_ResultFormatSelect(DRV_ADC_ID_1, ADC_RESULT_FORMAT_INTEGER_16BIT);
+    PLIB_ADC_ResultFormatSelect(DRV_ADC_ID_1, ADC_RESULT_FORMAT_INTEGER_32BIT);
     /* Buffer Mode */
     PLIB_ADC_ResultBufferModeSelect(DRV_ADC_ID_1, ADC_BUFFER_MODE_ONE_16WORD_BUFFER);
 

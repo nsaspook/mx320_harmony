@@ -9,12 +9,14 @@ void BasicIO_Initialize(void)
 	OledInit();
 	DRV_ADC_Open();
 	DRV_ADC_Start();
+	
 
 }
 
 void board_test(void)
 {
-	static uint32_t i = 0, j = 0, irow = 0, update_speed = 60000, pot1;
+	static uint32_t i = 0, j = 0, irow = 0, update_speed = 60000;
+	int32_t	pot1;
 	static uint8_t cylon = 0xff;
 	static int32_t alive_led = 0;
 	static bool LED_UP = true;
@@ -32,7 +34,7 @@ void board_test(void)
 				update_speed = 60000 + pot1;
 			}
 		}
-		DRV_ADC_Start();
+//		DRV_ADC_Start();
 
 		if (j++ >= 1) { // delay a bit ok
 			if (0) { // screen status feedback
