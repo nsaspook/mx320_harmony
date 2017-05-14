@@ -236,8 +236,6 @@
     <Elem>../src</Elem>
     <Elem>../src/default</Elem>
     <Elem>../src/system_config/default</Elem>
-    <Elem>../../../../root/microchip/harmony/v2_02_00b</Elem>
-    <Elem>../../../../IOShieldOled/utility</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>

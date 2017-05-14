@@ -56,32 +56,43 @@
 /*				Local Symbol Definitions						*/
 /* ------------------------------------------------------------ */
 
-#define cmdOledDisplayOn	0xAF
-#define cmdOledDisplayOff	0xAE
-#define	cmdOledSegRemap		0xA1	//map column 127 to SEG0
-#define	cmdOledComDir		0xC8	//scan from COM[N-1] to COM0
-#define	cmdOledComConfig	0xDA	//set COM hardware configuration
-#define	cmdOledComSeqLR		0x20	//sequential COM, left/right remap enabled
+//#define	cmdOledDisplayOn	0xAF
+//#define	cmdOledDisplayOff	0xAE
+//#define	cmdOledSegRemap		0xA1	//map column 127 to SEG0
+//#define	cmdOledComDir		0xC8	//scan from COM[N-1] to COM0
+//#define	cmdOledComConfig	0xDA	//set COM hardware configuration
+//#define	cmdOledComSeqLR		0x20	//sequential COM, left/right remap enabled
+
+enum {
+	cmdOledDisplayOn = 0xAF,
+	cmdOledDisplayOff = 0xAE,
+	cmdOledSegRemap = 0xA1,		//map column 127 to SEG0
+	cmdOledComDir = 0xC8,		//scan from COM[N-1] to COM0
+	cmdOledComConfig = 0xDA,	//set COM hardware configuration
+	cmdOledComSeqLR = 0x20		//sequential COM, left/right remap enabled
+};
+
+enum {
+	d_seq_single_width = 1, d_seq_one_width = 4, d_seq_two_width = 5
+}; // command byte-width sizes
 
 struct oled_init_data {
 	uint32_t init_delay_msecs;
-	uint8_t d_off[1];
-	uint8_t d_on[1];
-	uint8_t d_charge_setup[4];
-	uint8_t d_origin_memory[5];
+	uint8_t d_off[d_seq_single_width];
+	uint8_t d_on[d_seq_single_width];
+	uint8_t d_charge_setup[d_seq_one_width];
+	uint8_t d_origin_memory[d_seq_two_width];
 };
 
 static const struct oled_init_data oled_ssd1306 = {
 	.init_delay_msecs = 100,
-	.d_off =
-	{cmdOledDisplayOff},
-	.d_on =
-	{cmdOledDisplayOn},
-	.d_charge_setup =
-	{0x8D, 0x14, 0xD9, 0xF1}, //Send the Set Charge Pump and Set Pre-Charge Period commands
-	.d_origin_memory =
-	{cmdOledSegRemap, cmdOledComDir, cmdOledComConfig, cmdOledComSeqLR, cmdOledDisplayOn},
+	.d_off = {cmdOledDisplayOff},
+	.d_on = {cmdOledDisplayOn},
+	.d_charge_setup = {0x8D, 0x14, 0xD9, 0xF1}, //Send the Set Charge Pump and Set Pre-Charge Period commands
+	.d_origin_memory = {cmdOledSegRemap, cmdOledComDir, cmdOledComConfig, cmdOledComSeqLR, cmdOledDisplayOn},
 };
+
+const struct oled_init_data *oled_ptr = &oled_ssd1306;
 
 /* ------------------------------------------------------------ */
 /*				Global Variables								*/
@@ -360,7 +371,7 @@ void OledDevInit(void)
 	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_charge_setup, sizeof(oled_ssd1306.d_charge_setup), 0, 0);
 	prtVbatCtrl = 0;
 	DelayMs(oled_ssd1306.init_delay_msecs);
-	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ssd1306.d_origin_memory, sizeof(oled_ssd1306.d_origin_memory), 0, 0);
+	DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) oled_ptr->d_origin_memory, d_seq_two_width, 0, 0);
 }
 
 /* ------------------------------------------------------------ */
