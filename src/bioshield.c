@@ -64,7 +64,7 @@ void board_test(void)
 		}
 		OledClearBuffer();
 		OledSetCursor(0, 0);
-		sprintf(headder, "MCHP AAC %d ", pot1);
+		sprintf(headder, "A %d P %d", pot1,DRV_TMR0_PeriodValueGet());
 		OledPutString(headder);
 		OledSetCursor(0, 1);
 		OledPutString("chipKIT Uno32");
@@ -79,5 +79,6 @@ void board_test(void)
 		OledLineTo(127, irow & 31);
 		OledUpdate();
 		irow++;
+		DRV_OC0_PulseWidthSet(DRV_TMR0_PeriodValueGet()/cylon);
 	}
 }
