@@ -20,6 +20,9 @@
                 <logicalFolder name="f2" displayName="oc" projectFiles="true">
                   <itemPath>../src/system_config/default/framework/driver/oc/drv_oc_static.h</itemPath>
                 </logicalFolder>
+                <logicalFolder name="f3" displayName="tmr" projectFiles="true">
+                  <itemPath>../src/system_config/default/framework/driver/tmr/drv_tmr_static.h</itemPath>
+                </logicalFolder>
               </logicalFolder>
               <logicalFolder name="f2" displayName="system" projectFiles="true">
                 <logicalFolder name="f1" displayName="clk" projectFiles="true">
@@ -70,11 +73,17 @@
           <logicalFolder name="f4" displayName="tmr" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/src/drv_tmr_variant_mapping.h</itemPath>
-              <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/src/drv_tmr_local.h</itemPath>
             </logicalFolder>
             <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/drv_tmr.h</itemPath>
             <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/drv_tmr_mapping.h</itemPath>
             <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/drv_tmr_compatibility.h</itemPath>
+          </logicalFolder>
+          <logicalFolder name="f5" displayName="usart" projectFiles="true">
+            <logicalFolder name="f1" displayName="src" projectFiles="true">
+              <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/usart/src/drv_usart_variant_mapping.h</itemPath>
+              <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/usart/src/drv_usart_local.h</itemPath>
+            </logicalFolder>
+            <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/usart/drv_usart.h</itemPath>
           </logicalFolder>
           <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/driver.h</itemPath>
           <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/driver_common.h</itemPath>
@@ -161,6 +170,12 @@
                     <itemPath>../src/system_config/default/framework/driver/spi/dynamic/drv_spi_master_rm_tasks.c</itemPath>
                   </logicalFolder>
                 </logicalFolder>
+                <logicalFolder name="f4" displayName="tmr" projectFiles="true">
+                  <logicalFolder name="f1" displayName="src" projectFiles="true">
+                    <itemPath>../src/system_config/default/framework/driver/tmr/src/drv_tmr_static.c</itemPath>
+                    <itemPath>../src/system_config/default/framework/driver/tmr/src/drv_tmr_mapping.c</itemPath>
+                  </logicalFolder>
+                </logicalFolder>
               </logicalFolder>
               <logicalFolder name="f2" displayName="system" projectFiles="true">
                 <logicalFolder name="f1" displayName="clk" projectFiles="true">
@@ -209,10 +224,11 @@
               <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/spi/src/drv_spi_sys_queue_fifo.c</itemPath>
             </logicalFolder>
           </logicalFolder>
-          <logicalFolder name="f3" displayName="tmr" projectFiles="true">
+          <logicalFolder name="f3" displayName="usart" projectFiles="true">
             <logicalFolder name="f1" displayName="src" projectFiles="true">
               <logicalFolder name="f1" displayName="dynamic" projectFiles="true">
-                <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/tmr/src/dynamic/drv_tmr.c</itemPath>
+                <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/usart/src/dynamic/drv_usart.c</itemPath>
+                <itemPath>../../../../../../root/microchip/harmony/v2_02_00b/framework/driver/usart/src/dynamic/drv_usart_byte_model.c</itemPath>
               </logicalFolder>
             </logicalFolder>
           </logicalFolder>
@@ -236,6 +252,8 @@
     <Elem>../src</Elem>
     <Elem>../src/default</Elem>
     <Elem>../src/system_config/default</Elem>
+    <Elem>../../../../root/microchip/harmony/v2_02_00b</Elem>
+    <Elem>../../../../IOShieldOled/utility</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -245,7 +263,7 @@
         <targetDevice>PIC32MX320F128H</targetDevice>
         <targetHeader></targetHeader>
         <targetPluginBoard></targetPluginBoard>
-        <platformTool>ICD3PlatformTool</platformTool>
+        <platformTool>PICkit3PlatformTool</platformTool>
         <languageToolchain>XC32</languageToolchain>
         <languageToolchainVersion>1.43</languageToolchainVersion>
         <platform>2</platform>
@@ -499,6 +517,7 @@
         <property key="ToolFirmwareOption.UseLatestFirmware" value="true"/>
         <property key="UART1" value="true"/>
         <property key="UART2" value="true"/>
+        <property key="firmware.download.all" value="false"/>
         <property key="hwtoolclock.frcindebug" value="false"/>
         <property key="memories.aux" value="false"/>
         <property key="memories.bootflash" value="true"/>

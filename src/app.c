@@ -145,6 +145,9 @@ void APP_Tasks(void)
 		/* Application's initial state. */
 	case APP_STATE_INIT:
 	{
+
+		DRV_OC0_Start();
+		DRV_TMR0_Start();
 		bool appInitialized = true;
 
 

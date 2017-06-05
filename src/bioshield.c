@@ -9,14 +9,14 @@ void BasicIO_Initialize(void)
 	OledInit();
 	DRV_ADC_Open();
 	DRV_ADC_Start();
-	
+
 
 }
 
 void board_test(void)
 {
 	static uint32_t i = 0, j = 0, irow = 0, update_speed = 60000;
-	int32_t	pot1=0;
+	int32_t pot1 = 0;
 	static uint8_t cylon = 0xff;
 	static int32_t alive_led = 0;
 	static bool LED_UP = true;
@@ -26,7 +26,7 @@ void board_test(void)
 		i = 0;
 
 		if (DRV_ADC_SamplesAvailable()) {
-//			DRV_ADC_Stop();
+			//			DRV_ADC_Stop();
 			pot1 = DRV_ADC_SamplesRead(0);
 			if (pbsw4) {
 				update_speed = 10000 + pot1;
@@ -34,13 +34,13 @@ void board_test(void)
 				update_speed = 60000 + pot1;
 			}
 		}
-//		DRV_ADC_Start();
+		//		DRV_ADC_Start();
 
 		if (j++ >= 1) { // delay a bit ok
 			if (0) { // screen status feedback
-				PORTE = ~cylon; // roll leds cylon style
+				LEDBAR = ~cylon; // roll leds cylon style
 			} else {
-				PORTE = cylon; // roll leds cylon style (inverted)
+				LEDBAR = cylon; // roll leds cylon style (inverted)
 			}
 
 			if (LED_UP && (alive_led != 0)) {
@@ -60,6 +60,7 @@ void board_test(void)
 				}
 			}
 			j = 0;
+			LD5 = LED_UP;
 		}
 		OledClearBuffer();
 		OledSetCursor(0, 0);

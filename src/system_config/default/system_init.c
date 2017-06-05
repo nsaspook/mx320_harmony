@@ -136,17 +136,26 @@ const DRV_I2C_INIT drvI2C0InitData =
  };
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_Timer Initialization Data">
-/*** TMR Driver Initialization Data ***/
+// </editor-fold>
+// <editor-fold defaultstate="collapsed" desc="DRV_USART Initialization Data">
 
-const DRV_TMR_INIT drvTmr0InitData =
+const DRV_USART_INIT drvUsart0InitData =
 {
-    .moduleInit.sys.powerState = DRV_TMR_POWER_STATE_IDX0,
-    .tmrId = DRV_TMR_PERIPHERAL_ID_IDX0,
-    .clockSource = DRV_TMR_CLOCK_SOURCE_IDX0, 
-    .prescale = DRV_TMR_PRESCALE_IDX0,
-    .mode = DRV_TMR_OPERATION_MODE_16_BIT,
-    .interruptSource = DRV_TMR_INTERRUPT_SOURCE_IDX0,
-    .asyncWriteEnable = false,
+    .moduleInit.value = DRV_USART_POWER_STATE_IDX0,
+    .usartID = DRV_USART_PERIPHERAL_ID_IDX0, 
+    .mode = DRV_USART_OPER_MODE_IDX0,
+    .flags = DRV_USART_INIT_FLAGS_IDX0,
+    .brgClock = DRV_USART_BRG_CLOCK_IDX0,
+    .lineControl = DRV_USART_LINE_CNTRL_IDX0,
+    .baud = DRV_USART_BAUD_RATE_IDX0,
+    .handshake = DRV_USART_HANDSHAKE_MODE_IDX0,
+    .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX0,
+    .interruptReceive = DRV_USART_RCV_INT_SRC_IDX0,
+    .interruptError = DRV_USART_ERR_INT_SRC_IDX0,
+    .dmaChannelTransmit = DMA_CHANNEL_NONE,
+    .dmaInterruptTransmit = DRV_USART_XMIT_INT_SRC_IDX0,    
+    .dmaChannelReceive = DMA_CHANNEL_NONE,
+    .dmaInterruptReceive = DRV_USART_RCV_INT_SRC_IDX0,    
 };
 // </editor-fold>
 
@@ -217,14 +226,13 @@ void SYS_Initialize ( void* data )
 
     /* Initialize the OC Driver */
     DRV_OC0_Initialize();
+    /*Initialize TMR0 */
+    DRV_TMR0_Initialize();
+ 
+     sysObj.drvUsart0 = DRV_USART_Initialize(DRV_USART_INDEX_0, (SYS_MODULE_INIT *)&drvUsart0InitData);
+    SYS_INT_VectorPrioritySet(INT_VECTOR_UART1, INT_PRIORITY_LEVEL1);
+    SYS_INT_VectorSubprioritySet(INT_VECTOR_UART1, INT_SUBPRIORITY_LEVEL0);
 
-    sysObj.drvTmr0 = DRV_TMR_Initialize(DRV_TMR_INDEX_0, (SYS_MODULE_INIT *)&drvTmr0InitData);
-
-    SYS_INT_VectorPrioritySet(INT_VECTOR_T1, INT_PRIORITY_LEVEL1);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_T1, INT_SUBPRIORITY_LEVEL0);
- 
- 
- 
     /* Initialize System Services */
 
     /*** Interrupt Service Initialization Code ***/

@@ -78,10 +78,29 @@ void __ISR(_ADC_VECTOR, ipl3AUTO) _IntHandlerDrvAdc(void)
 
 
     
-void __ISR(_TIMER_1_VECTOR, ipl1AUTO) IntHandlerDrvTmrInstance0(void)
+void __ISR(_TIMER_2_VECTOR, ipl1AUTO) IntHandlerDrvTmrInstance0(void)
 {
-    DRV_TMR_Tasks(sysObj.drvTmr0);
+    PLIB_INT_SourceFlagClear(INT_ID_0,INT_SOURCE_TIMER_2);
 }
+ void __ISR(_UART_1_VECTOR, ipl1AUTO) _IntHandlerDrvUsartInstance0(void)
+{
+    DRV_USART_TasksTransmit(sysObj.drvUsart0);
+    DRV_USART_TasksError(sysObj.drvUsart0);
+    DRV_USART_TasksReceive(sysObj.drvUsart0);
+}
+ 
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
  
 void __ISR(_SPI_2_VECTOR, ipl1AUTO) _IntHandlerSPIInstance0(void)
 {
