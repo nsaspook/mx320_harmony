@@ -7,10 +7,6 @@ void BasicIO_Initialize(void)
 	 */
 
 	OledInit();
-	DRV_ADC_Open();
-	DRV_ADC_Start();
-
-
 }
 
 void board_test(void)
@@ -80,5 +76,6 @@ void board_test(void)
 		OledUpdate();
 		irow++;
 		DRV_OC0_PulseWidthSet(DRV_TMR0_PeriodValueGet()/cylon);
+		DRV_OC1_PulseWidthSet(DRV_TMR0_PeriodValueGet()/cylon);
 	}
 }

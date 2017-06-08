@@ -226,6 +226,7 @@ void SYS_Initialize ( void* data )
 
     /* Initialize the OC Driver */
     DRV_OC0_Initialize();
+    DRV_OC1_Initialize();
     /*Initialize TMR0 */
     DRV_TMR0_Initialize();
  
