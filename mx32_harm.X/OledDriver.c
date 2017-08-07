@@ -56,13 +56,6 @@
 /*				Local Symbol Definitions						*/
 /* ------------------------------------------------------------ */
 
-//#define	cmdOledDisplayOn	0xAF
-//#define	cmdOledDisplayOff	0xAE
-//#define	cmdOledSegRemap		0xA1	//map column 127 to SEG0
-//#define	cmdOledComDir		0xC8	//scan from COM[N-1] to COM0
-//#define	cmdOledComConfig	0xDA	//set COM hardware configuration
-//#define	cmdOledComSeqLR		0x20	//sequential COM, left/right remap enabled
-
 enum {
 	cmdOledDisplayOn = 0xAF,
 	cmdOledDisplayOff = 0xAE,
@@ -257,7 +250,7 @@ void OledTerm(void)
 void OledHostInit(void)
 {
 	/*
-	 OLED control and display power off
+	 OLED control and display power off, no CS select pin means SPI always talks to display 
 	 */
 	prtVddCtrl = 1;
 	prtVbatCtrl = 1;

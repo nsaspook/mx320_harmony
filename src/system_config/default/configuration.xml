@@ -324,7 +324,7 @@
       <Template dnOrder="24">
         <Name dnOrder="0">system_config.h</Name>
         <Path dnOrder="1">Header Files/app/system_config/default</Path>
-        <Checksum dnOrder="2">44BFE641DF6C0A68607DD92371E5CD3E</Checksum>
+        <Checksum dnOrder="2">700CEAA4ACAC405702DF96004901737A</Checksum>
       </Template>
       <Template dnOrder="25">
         <Name dnOrder="0">app.h</Name>
