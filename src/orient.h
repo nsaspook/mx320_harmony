@@ -39,6 +39,7 @@ extern "C" {
     typedef struct orienter_data_t {
         uint32_t a_counts, b_counts;
         uint32_t motor_run;
+        uint8_t orienter_bits, old_orienter_bits;
     } orienter_data_t;
 
     int32_t orienter_motor_check(int, int);
