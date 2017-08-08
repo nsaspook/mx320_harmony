@@ -2,7 +2,7 @@
 #include "orient.h"
 
 
-struct orienter_data_t orinter_motor;
+struct orienter_data_t orienter_motor;
 
 int32_t orienter_motor_check(int param1, int param2)
 {
