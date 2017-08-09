@@ -7,6 +7,8 @@ struct orienter_data_t orienter_motor= {
 	.old_orienter_bits=0xff,
 };
 
+struct orienter_bits_t * orienter_bits=(void *)&orienter_motor.orienter_bits;
+
 int32_t orienter_motor_check(int param1, int param2)
 {
 	char headder[16];
@@ -21,7 +23,7 @@ int32_t orienter_motor_check(int param1, int param2)
 		orienter_motor.old_orienter_bits = orienter_motor.orienter_bits;
 		OledClearBuffer();
 		OledSetCursor(0, 0);
-		sprintf(headder, "SW1 %d SW2 %d", ssw1, ssw2);
+		sprintf(headder, "A%d B%d", (uint32_t) orienter_bits->orienter_a, (uint32_t) orienter_bits->orienter_b);
 		OledPutString(headder);
 		OledSetCursor(0, 1);
 		OledPutString("E220 orienter");
