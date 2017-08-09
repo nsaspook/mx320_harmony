@@ -41,6 +41,14 @@ extern "C" {
         uint32_t motor_run;
         uint8_t orienter_bits, old_orienter_bits;
     } orienter_data_t;
+    
+        typedef struct orienter_bits_t {
+        uint8_t orienter_a:1;
+        uint8_t orienter_b:1;
+        uint8_t orienter_cw:1;
+        uint8_t orienter_ccw:1;
+        uint8_t dummy:4;
+    } orienter_bits_t;
 
     int32_t orienter_motor_check(int, int);
     /* Provide C++ Compatibility */
