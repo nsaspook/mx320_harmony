@@ -55,6 +55,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 
 #include "app.h"
 #include "bioshield.h"
+#include "orient.h"
 
 // *****************************************************************************
 // *****************************************************************************
@@ -161,7 +162,19 @@ void APP_Tasks(void)
 
 	case APP_STATE_SERVICE_TASKS:
 	{
-		board_test();
+		uint32_t ssw_state = ssw1 + (ssw2 << 1);
+
+		switch (ssw_state) {
+		case 0:
+			board_test();
+			break;
+
+		case 1:
+			orienter_motor_check(0, 0);
+			break;
+		default:
+			board_test();
+		}
 		break;
 	}
 
@@ -176,6 +189,7 @@ void APP_Tasks(void)
 	}
 	}
 }
+
 
 
 
