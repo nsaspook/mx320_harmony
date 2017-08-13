@@ -23,7 +23,8 @@ int32_t orienter_motor_check(int param1, int param2)
 		orienter_motor.old_orienter_bits = orienter_motor.orienter_bits;
 		OledClearBuffer();
 		OledSetCursor(0, 0);
-		sprintf(headder, "A%d B%d", (uint32_t) orienter_bits->orienter_a, (uint32_t) orienter_bits->orienter_b);
+		sprintf(headder, "A%d B%d CW%d CCW%d", (uint32_t) orienter_bits->orienter_a, (uint32_t) orienter_bits->orienter_b,
+			(uint32_t) orienter_bits->orienter_cw, (uint32_t) orienter_bits->orienter_ccw);
 		OledPutString(headder);
 		OledSetCursor(0, 1);
 		OledPutString("E220 orienter");
