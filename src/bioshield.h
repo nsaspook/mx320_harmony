@@ -28,7 +28,9 @@ extern "C" {
 #define pbsw4 PORTDbits.RD7
     
 #define LEDBAR  PORTE
+#define LD8     PORTEbits.RE7
 #define LD5     PORTFbits.RF0
+    
 
 void BasicIO_Initialize(void);
 void board_test(void);
