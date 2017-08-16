@@ -37,6 +37,8 @@ extern "C" {
 #endif
 
 #define LPCHANC	8
+#define ABCOUNT	200
+#define MOTORCYCLES	500000
 
 #define LED1    PORTBbits.RB1
 #define LED2    PORTBbits.RB2
@@ -64,7 +66,7 @@ extern "C" {
 	} orienter_bits_t;
 
 	int32_t orienter_motor_check(int, int);
-	float lp_filter(float, int16_t, int16_t);
+	float lp_filter(float, uint32_t, int32_t);
 	/* Provide C++ Compatibility */
 #ifdef __cplusplus
 }

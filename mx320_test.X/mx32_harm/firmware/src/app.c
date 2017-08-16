@@ -173,7 +173,7 @@ void APP_Tasks(void)
 			break;
 
 		case 1:
-			orienter_motor_check(500000, ssw_state);
+			orienter_motor_check(MOTORCYCLES, ssw_state);
 			break;
 		default:
 			board_test();

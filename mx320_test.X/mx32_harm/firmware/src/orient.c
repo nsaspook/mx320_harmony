@@ -10,12 +10,17 @@ struct orienter_data_t orienter_motor = {
 struct orienter_bits_t * orienter_bits = (void *) &orienter_motor.orienter_bits;
 struct orienter_bits_t * old_orienter_bits = (void *) &orienter_motor.old_orienter_bits;
 
+/*
+ Check if motor is moving and encoder lines are changing state
+ */
 int32_t orienter_motor_check(int param1, int param2)
 {
 	char headder[16];
 	static uint32_t display_delay = 0;
 
+	/* load the variable with the data from the switch inputs */
 	orienter_motor.orienter_bits = 0;
+	/* shift the switch bits into the correct spot in the variable */
 	orienter_motor.orienter_bits = pbsw1 + (pbsw2 << 1) + (pbsw3 << 2) + (pbsw4 << 3);
 	LD7 = 1;
 	orienter_motor.motor_checks++;
@@ -27,23 +32,23 @@ int32_t orienter_motor_check(int param1, int param2)
 		if (param2 == 1) { // Ropins motor for E220 platen wafer spider lift
 			if (orienter_bits->orienter_a != old_orienter_bits->orienter_a) {
 				orienter_motor.a_counts++;
-				if (orienter_motor.a_counts > 200) orienter_motor.aok1 = 1;
+				if (orienter_motor.a_counts > ABCOUNT) orienter_motor.aok1 = 1;
 				orienter_motor.motor_checks = 0;
 				/* input A B logic, cpu signals are inverted at the opto stage */
 				if (old_orienter_bits->orienter_a == 0 && old_orienter_bits->orienter_b == 0) {
 					orienter_motor.motor_run_ccw = true;
 					orienter_motor.motor_run_cw = false;
-					if (orienter_motor.b_counts > 200) orienter_motor.aok3 = 1;
+					if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok3 = 1;
 				}
 				if (old_orienter_bits->orienter_a == 0 && old_orienter_bits->orienter_b == 1) {
 					orienter_motor.motor_run_ccw = false;
 					orienter_motor.motor_run_cw = true;
-					if (orienter_motor.b_counts > 200) orienter_motor.aok3 = 1;
+					if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok3 = 1;
 				}
 			}
 			if (orienter_bits->orienter_b != old_orienter_bits->orienter_b) {
 				orienter_motor.b_counts++;
-				if (orienter_motor.b_counts > 200) orienter_motor.aok2 = 1;
+				if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok2 = 1;
 				orienter_motor.motor_checks = 0;
 			}
 		}
@@ -57,7 +62,7 @@ int32_t orienter_motor_check(int param1, int param2)
 			OledPutString(headder);
 			OledSetCursor(0, 1);
 			sprintf(headder, "CW%d CCW%d C%d", (uint32_t) orienter_motor.motor_run_cw, (uint32_t) orienter_motor.motor_run_ccw,
-				(uint32_t) lp_filter(orienter_motor.motor_checks, 0, false));
+				(uint32_t) lp_filter((float) orienter_motor.motor_checks, 0, true));
 			OledPutString(headder);
 			OledSetCursor(0, 2);
 			sprintf(headder, "%s %s %s %s", orienter_motor.aok1 == 1 ? "OK" : "NG", orienter_motor.aok2 == 1 ? "OK" : "NG",
@@ -83,7 +88,7 @@ int32_t orienter_motor_check(int param1, int param2)
 	return 0;
 }
 
-float lp_filter(float new, int16_t bn, int16_t slow) // low pass filter, slow rate of change for new, LPCHANC channels, slow/fast select (1) to zero channel
+float lp_filter(float new, uint32_t bn, int32_t slow) // low pass filter, slow rate of change for new, LPCHANC channels, slow/fast select (1) to zero channel
 {
 	static float smooth[LPCHANC];
 	float lp_speed = 0.0, lp_x = 0.0;
