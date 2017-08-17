@@ -6,7 +6,7 @@
 #     Harmony version: 2.02
 #
 #
-# from /fred/mx320/mx320_test.X/mx32_harm/firmware/mx32_harm.hconfig
+# from /old_os/mx320_orient/mx320_test.X/mx32_harm/firmware/mx32_harm.hconfig
 #
 CONFIG_APP_INSTANCES=1
 #
@@ -16,7 +16,7 @@ CONFIG_APP_MENU_IDX0=y
 CONFIG_APP_NAME_0="app"
 CONFIG_APP_AUTO_GENERATE_CODE0=n
 #
-# from /fred/mx320/mx320_test.X/mx32_harm/firmware/mx32_harm.hconfig
+# from /old_os/mx320_orient/mx320_test.X/mx32_harm/firmware/mx32_harm.hconfig
 #
 CONFIG_USE_EXCEPTION_HANDLER=y
 CONFIG_EXCEPTION_USE_SYS_DEBUG=y
@@ -343,7 +343,7 @@ CONFIG_SYS_PORTS_CN=n
 CONFIG_USE_SYS_PORTS_CN_INTERRUPT=n
 CONFIG_SYS_PORT_ADPCFG=0xff00
 CONFIG_SYS_PORT_CNEN=0x0
-CONFIG_SYS_PORT_CNPU=0x0
+CONFIG_SYS_PORT_CNPU=0x4
 CONFIG_COMPONENT_PACKAGE="QFN"
 #
 # from $HARMONY_VERSION_PATH/framework/system/ports/config/sys_ports_idx.ftl
@@ -812,7 +812,7 @@ CONFIG_BSP_PIN_16_DIR=""
 CONFIG_BSP_PIN_16_LAT=""
 CONFIG_BSP_PIN_16_OD=""
 CONFIG_BSP_PIN_16_CN=""
-CONFIG_BSP_PIN_16_PU=""
+CONFIG_BSP_PIN_16_PU="True"
 CONFIG_BSP_PIN_16_PD=""
 CONFIG_BSP_PIN_17_FUNCTION_NAME=""
 CONFIG_BSP_PIN_17_FUNCTION_TYPE=""
