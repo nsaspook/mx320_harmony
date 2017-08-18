@@ -18,7 +18,7 @@
     definitions for build-time configuration options that are not instantiated
     until used by another MPLAB Harmony module or application.
 
-    Created with MPLAB Harmony Version 2.02
+    Created with MPLAB Harmony Version 2.04
 *******************************************************************************/
 
 // DOM-IGNORE-BEGIN
@@ -75,8 +75,8 @@ extern "C" {
 // *****************************************************************************
 /* Common System Service Configuration Options
 */
-#define SYS_VERSION_STR           "2.02"
-#define SYS_VERSION               20200
+#define SYS_VERSION_STR           "2.04"
+#define SYS_VERSION               20400
 
 // *****************************************************************************
 /* Clock System Service Configuration Options
@@ -86,10 +86,7 @@ extern "C" {
 #define SYS_CLK_UPLL_BEFORE_DIV2_FREQ       96000000ul
 #define SYS_CLK_CONFIG_PRIMARY_XTAL         0ul
 #define SYS_CLK_CONFIG_SECONDARY_XTAL       32768ul
-#define SYS_CLK_CONFIG_FREQ_ERROR_LIMIT     10
-#define SYS_CLK_WAIT_FOR_SWITCH             true
-#define SYS_CLK_ON_WAIT                     OSC_ON_WAIT_IDLE 
- 
+   
 /*** Ports System Service Configuration ***/
 #define SYS_PORT_AD1PCFG        ~0xff00
 #define SYS_PORT_CNPUE          0x4
@@ -127,33 +124,6 @@ extern "C" {
 // Section: Driver Configuration
 // *****************************************************************************
 // *****************************************************************************
-// *****************************************************************************
-/* I2C Driver Configuration Options
-*/
-#define DRV_I2C_INTERRUPT_MODE                    		true
-#define DRV_I2C_CLIENTS_NUMBER                    		1
-#define DRV_I2C_INSTANCES_NUMBER                  		1
-
-#define DRV_I2C_PERIPHERAL_ID_IDX0                		I2C_ID_1
-#define DRV_I2C_OPERATION_MODE_IDX0               		DRV_I2C_MODE_MASTER
-#define DRV_SCL_PORT_IDX0                               PORT_CHANNEL_A
-#define DRV_SCL_PIN_POSITION_IDX0                       PORTS_BIT_POS_14
-#define DRV_SDA_PORT_IDX0                               PORT_CHANNEL_A
-#define DRV_SDA_PIN_POSITION_IDX0                       PORTS_BIT_POS_15
-#define DRV_I2C_BIT_BANG_IDX0                           false
-#define DRV_I2C_STOP_IN_IDLE_IDX0                       false
-#define DRV_I2C_SMBus_SPECIFICATION_IDX0			    false
-#define DRV_I2C_BAUD_RATE_IDX0                    		50000
-#define DRV_I2C_BRG_CLOCK_IDX0	                  		80000000
-#define DRV_I2C_SLEW_RATE_CONTROL_IDX0      			false
-#define DRV_I2C_MASTER_INT_SRC_IDX0               		INT_SOURCE_I2C_1_MASTER
-#define DRV_I2C_SLAVE_INT_SRC_IDX0                		
-#define DRV_I2C_ERR_MX_INT_SRC_IDX0               		INT_SOURCE_I2C_1_ERROR
-#define DRV_I2C_INT_VECTOR_IDX0                         INT_VECTOR_I2C1
-#define DRV_I2C_ISR_VECTOR_IDX0                         _I2C_1_VECTOR
-#define DRV_I2C_INT_PRIORITY_IDX0                 		INT_PRIORITY_LEVEL1
-#define DRV_I2C_INT_SUB_PRIORITY_IDX0             		INT_SUBPRIORITY_LEVEL0
-#define DRV_I2C_POWER_STATE_IDX0                  		SYS_MODULE_POWER_RUN_FULL
 #define DRV_I2C_INTERRUPT_MODE                    		true
 
 #define DRV_OC_DRIVER_MODE_STATIC 

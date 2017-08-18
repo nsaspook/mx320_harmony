@@ -36,36 +36,34 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 (INCLUDING BUT NOT LIMITED TO ANY DEFENSE THEREOF), OR OTHER SIMILAR COSTS.
  *******************************************************************************/
 //DOM-IGNORE-END
-
 #ifndef _SYS_DEFINITIONS_H
 #define _SYS_DEFINITIONS_H
-
 
 // *****************************************************************************
 // *****************************************************************************
 // Section: Included Files
 // *****************************************************************************
 // *****************************************************************************
-
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
 #include "system/common/sys_common.h"
 #include "system/common/sys_module.h"
-#include "driver/oc/drv_oc.h" 
+#include "driver/i2c/drv_i2c.h"
+         
+     
+#include "framework/driver/i2c/drv_i2c_static_buffer_model.h"
+     
+ 
+ #include "driver/oc/drv_oc.h" 
 #include "system/devcon/sys_devcon.h"
 #include "system/clk/sys_clk.h"
 #include "system/int/sys_int.h"
 #include "driver/tmr/drv_tmr_static.h"
 #include "peripheral/int/plib_int.h"
 #include "driver/usart/drv_usart.h"
-#include "driver/i2c/drv_i2c.h"
 #include "system/ports/sys_ports.h"
- 
 #include "driver/spi/drv_spi.h"
-
-
-
 #include "app.h"
 
 
@@ -75,7 +73,7 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 extern "C" {
 
 #endif
-// DOM-IGNORE-END 
+// DOM-IGNORE-END
 
 // *****************************************************************************
 // *****************************************************************************
@@ -102,13 +100,11 @@ typedef struct
 {
     SYS_MODULE_OBJ  drvTmr0;
     SYS_MODULE_OBJ  drvUsart0;
-    SYS_MODULE_OBJ  drvI2C0;
 
     /*** SPI Object for Index 0 ***/
     SYS_MODULE_OBJ				spiObjectIdx0;
 
 } SYSTEM_OBJECTS;
-
 
 // *****************************************************************************
 // *****************************************************************************
@@ -117,7 +113,6 @@ typedef struct
 // *****************************************************************************
 
 extern SYSTEM_OBJECTS sysObj;
-
 
 //DOM-IGNORE-BEGIN
 #ifdef __cplusplus

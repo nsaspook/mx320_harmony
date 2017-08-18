@@ -149,7 +149,7 @@ void DRV_TMR0_Initialize(void)
     /* Disable Timer */
     PLIB_TMR_Stop(TMR_ID_2);
     /* Select clock source */
-    PLIB_TMR_ClockSourceSelect(TMR_ID_2, DRV_TMR_CLKSOURCE_INTERNAL);
+    PLIB_TMR_ClockSourceSelect ( TMR_ID_2, TMR_CLOCK_SOURCE_PERIPHERAL_CLOCK );
     /* Select prescalar value */
     PLIB_TMR_PrescaleSelect(TMR_ID_2, TMR_PRESCALE_VALUE_256);
     /* Enable 16 bit mode */
@@ -225,6 +225,21 @@ void DRV_TMR0_CounterClear(void)
 {
     /* Clear 16-bit counter value*/
     PLIB_TMR_Counter16BitClear(TMR_ID_2);
+}
+
+DRV_TMR_OPERATION_MODE DRV_TMR0_DividerRangeGet
+(
+	DRV_TMR_DIVIDER_RANGE * pDivRange
+)
+{
+	if(pDivRange)
+	{
+        pDivRange->dividerMax = DRV_TIMER_DIVIDER_MAX_16BIT;
+        pDivRange->dividerMin = DRV_TIMER_DIVIDER_MIN_16BIT;
+		pDivRange->dividerStep = 1;
+		return DRV_TMR_OPERATION_MODE_16_BIT;
+	}
+	return DRV_TMR_OPERATION_MODE_NONE;
 }
 
 uint32_t DRV_TMR0_CounterFrequencyGet(void)

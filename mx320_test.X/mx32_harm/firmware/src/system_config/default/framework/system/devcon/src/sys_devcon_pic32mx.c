@@ -111,7 +111,6 @@ void __attribute__((nomips16)) SYS_DEVCON_PerformanceConfig( unsigned int sysclk
             ws = 2;
         else
             ws = 3;
-
         /* Interrupts must be disabled when changing wait states */
         int_flag = (bool)(PLIB_INT_GetStateAndDisable( INT_ID_0 ) & 0x01);
 

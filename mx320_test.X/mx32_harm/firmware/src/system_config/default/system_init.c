@@ -9,9 +9,9 @@
 
   Description:
     This file contains source code necessary to initialize the system.  It
-    implements the "SYS_Initialize" function, defines the configuration bits, 
-    and allocates any necessary global system resources, such as the 
-    sysObj structure that contains the object handles to all the MPLAB Harmony 
+    implements the "SYS_Initialize" function, defines the configuration bits,
+    and allocates any necessary global system resources, such as the
+    sysObj structure that contains the object handles to all the MPLAB Harmony
     module objects in the system.
  *******************************************************************************/
 
@@ -92,24 +92,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
 // *****************************************************************************
 // *****************************************************************************
 // <editor-fold defaultstate="collapsed" desc="DRV_I2C Initialization Data">
-// *****************************************************************************
-/* I2C Driver Initialization Data
-*/
-
-const DRV_I2C_INIT drvI2C0InitData =
-{
-    .i2cId = DRV_I2C_PERIPHERAL_ID_IDX0,
-    .i2cMode = DRV_I2C_OPERATION_MODE_IDX0,
-    .baudRate = DRV_I2C_BAUD_RATE_IDX0,
-    .busspeed = DRV_I2C_SLEW_RATE_CONTROL_IDX0,
-    .buslevel = DRV_I2C_SMBus_SPECIFICATION_IDX0,
-    .mstrInterruptSource = DRV_I2C_MASTER_INT_SRC_IDX0,
-    .errInterruptSource = DRV_I2C_ERR_MX_INT_SRC_IDX0,
-};
-
-
-
-
 // </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_SPI Initialization Data"> 
  /*** SPI Driver Initialization Data ***/
@@ -207,22 +189,17 @@ void SYS_Initialize ( void* data )
     SYS_PORTS_Initialize();
 
     /* Initialize Drivers */
-    sysObj.drvI2C0 = DRV_I2C_Initialize(DRV_I2C_INDEX_0, (SYS_MODULE_INIT *)&drvI2C0InitData);
+    DRV_I2C0_Initialize();
 
-
-    SYS_INT_VectorPrioritySet(INT_VECTOR_I2C1, INT_PRIORITY_LEVEL1);
-    SYS_INT_VectorSubprioritySet(INT_VECTOR_I2C1, INT_SUBPRIORITY_LEVEL0);
-
-
+    /* Initialize the OC Driver */
+    DRV_OC0_Initialize();
+    DRV_OC1_Initialize();
 
     /*** SPI Driver Index 0 initialization***/
 
     SYS_INT_VectorPrioritySet(DRV_SPI_INT_VECTOR_IDX0, DRV_SPI_INT_PRIORITY_IDX0);
     SYS_INT_VectorSubprioritySet(DRV_SPI_INT_VECTOR_IDX0, DRV_SPI_INT_SUB_PRIORITY_IDX0);
     sysObj.spiObjectIdx0 = DRV_SPI_Initialize(DRV_SPI_INDEX_0, (const SYS_MODULE_INIT  * const)&drvSpi0InitData);
-    /* Initialize the OC Driver */
-    DRV_OC0_Initialize();
-    DRV_OC1_Initialize();
     /*Initialize TMR0 */
     DRV_TMR0_Initialize();
  
@@ -234,7 +211,7 @@ void SYS_Initialize ( void* data )
 
     /*** Interrupt Service Initialization Code ***/
     SYS_INT_Initialize();
-  
+
     /* Initialize Middleware */
 
     /* Enable Global Interrupts */
