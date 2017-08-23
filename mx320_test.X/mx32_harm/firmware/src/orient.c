@@ -32,9 +32,12 @@ int32_t orienter_motor_check(int param1, int param2)
 		if (param2 == 1) { // Ropins motor for E220 platen wafer spider lift
 			if (orienter_bits->orienter_a != old_orienter_bits->orienter_a) {
 				orienter_motor.a_counts++;
-				if (orienter_motor.a_counts > ABCOUNT) orienter_motor.aok1 = 1;
+				if (orienter_motor.a_counts > ABCOUNT) {
+					orienter_motor.aok1 = 1;
+					lp_filter(0.0, 0, -1);
+				}
 				orienter_motor.motor_checks = 0;
-				lp_filter(0.0, 0, -1);
+
 				/* input A B logic, cpu signals are inverted at the opto stage */
 				if (old_orienter_bits->orienter_a == 0 && old_orienter_bits->orienter_b == 0) {
 					orienter_motor.motor_run_ccw = true;
@@ -49,9 +52,11 @@ int32_t orienter_motor_check(int param1, int param2)
 			}
 			if (orienter_bits->orienter_b != old_orienter_bits->orienter_b) {
 				orienter_motor.b_counts++;
-				if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok2 = 1;
+				if (orienter_motor.b_counts > ABCOUNT) {
+					orienter_motor.aok2 = 1;
+					lp_filter(0.0, 0, -1);
+				}
 				orienter_motor.motor_checks = 0;
-				lp_filter(0.0, 0, -1);
 			}
 		}
 
