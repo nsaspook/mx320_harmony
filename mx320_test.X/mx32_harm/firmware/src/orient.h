@@ -36,14 +36,14 @@
 extern "C" {
 #endif
 
-#define SVERSION	"V0.6"
+#define SVERSION	"V0.7"
 #define LPCHANC	8
 #define ABCOUNT	200
 #define MOTORCYCLES	500000
 
-#define LED1    PORTBbits.RB1
-#define LED2    PORTBbits.RB2
-#define LED3    PORTBbits.RB3
+#define LED1    LATBbits.LATB1
+#define LED2    LATBbits.LATB2
+#define LED3    LATBbits.LATB3
 
 	typedef struct orienter_data_t {
 		uint32_t a_counts, b_counts;

@@ -26,7 +26,7 @@ extern "C" {
 #define pbsw2 PORTDbits.RD5
 #define pbsw3 PORTDbits.RD6
 #define pbsw4 PORTDbits.RD7
-#define MOTOR_FET1	PORTDbits.RD0
+#define MOTOR_FET1	LATDbits.LATD0
 
 #define LEDBAR  PORTE
 #define LD8     PORTEbits.RE7

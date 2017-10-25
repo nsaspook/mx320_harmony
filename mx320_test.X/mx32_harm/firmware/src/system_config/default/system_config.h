@@ -89,7 +89,7 @@ extern "C" {
    
 /*** Ports System Service Configuration ***/
 #define SYS_PORT_AD1PCFG        ~0xff00
-#define SYS_PORT_CNPUE          0x4
+#define SYS_PORT_CNPUE          0x3c
 #define SYS_PORT_CNEN           0x0
 #define SYS_PORT_B_TRIS         0xFFB1
 #define SYS_PORT_B_LAT          0x000E
