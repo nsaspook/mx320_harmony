@@ -36,6 +36,7 @@
 extern "C" {
 #endif
 
+#define SVERSION	"V0.5"
 #define LPCHANC	8
 #define ABCOUNT	200
 #define MOTORCYCLES	500000

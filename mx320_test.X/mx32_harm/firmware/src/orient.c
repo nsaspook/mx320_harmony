@@ -29,7 +29,7 @@ int32_t orienter_motor_check(int param1, int param2)
 	if ((orienter_motor.orienter_bits != orienter_motor.old_orienter_bits) || (display_delay++ == param1)) {
 		LD8 = 1;
 		orienter_motor.motor_run++; // total AB encoder changes
-		if (param2 == 1) { // Ropins motor for E220 platen wafer spider lift
+		if (param2 == 1) { // Orient motor at 12vdc
 			if (orienter_bits->orienter_a != old_orienter_bits->orienter_a) {
 				orienter_motor.a_counts++;
 				if (orienter_motor.a_counts > ABCOUNT) {
@@ -65,7 +65,7 @@ int32_t orienter_motor_check(int param1, int param2)
 			display_delay = 0;
 			OledClearBuffer();
 			OledSetCursor(0, 0);
-			sprintf(headder, "A%d B%d T%d", orienter_motor.a_counts, orienter_motor.b_counts, orienter_motor.motor_run);
+			sprintf(headder, "A%d B%d T%d %s", orienter_motor.a_counts, orienter_motor.b_counts, orienter_motor.motor_run-1, SVERSION);
 			OledPutString(headder);
 			OledSetCursor(0, 1);
 			sprintf(headder, "CW%d CCW%d C%d", (uint32_t) orienter_motor.motor_run_cw, (uint32_t) orienter_motor.motor_run_ccw,
@@ -76,7 +76,7 @@ int32_t orienter_motor_check(int param1, int param2)
 				orienter_motor.aok3 == 1 ? "OK" : "NG", orienter_bits->orienter_cw == 1 ? "OK" : "NG");
 			OledPutString(headder);
 			OledSetCursor(0, 3);
-			OledPutString("motor encoder");
+			OledPutString("Orienter Motor");
 			orienter_motor.a_counts = 0;
 			orienter_motor.b_counts = 0;
 			orienter_motor.motor_run = 0;
