@@ -117,8 +117,6 @@ SUBSTITUTE GOODS, TECHNOLOGY, SERVICES, OR ANY CLAIMS BY THIRD PARTIES
     .jobQueueReserveSize = DRV_SPI_RESERVED_JOB_IDX0,
  };
 // </editor-fold>
-// <editor-fold defaultstate="collapsed" desc="DRV_Timer Initialization Data">
-// </editor-fold>
 // <editor-fold defaultstate="collapsed" desc="DRV_USART Initialization Data">
 
 const DRV_USART_INIT drvUsart0InitData =
@@ -191,19 +189,13 @@ void SYS_Initialize ( void* data )
     /* Initialize Drivers */
     DRV_I2C0_Initialize();
 
-    /* Initialize the OC Driver */
-    DRV_OC0_Initialize();
-    DRV_OC1_Initialize();
 
     /*** SPI Driver Index 0 initialization***/
 
     SYS_INT_VectorPrioritySet(DRV_SPI_INT_VECTOR_IDX0, DRV_SPI_INT_PRIORITY_IDX0);
     SYS_INT_VectorSubprioritySet(DRV_SPI_INT_VECTOR_IDX0, DRV_SPI_INT_SUB_PRIORITY_IDX0);
     sysObj.spiObjectIdx0 = DRV_SPI_Initialize(DRV_SPI_INDEX_0, (const SYS_MODULE_INIT  * const)&drvSpi0InitData);
-    /*Initialize TMR0 */
-    DRV_TMR0_Initialize();
- 
-     sysObj.drvUsart0 = DRV_USART_Initialize(DRV_USART_INDEX_0, (SYS_MODULE_INIT *)&drvUsart0InitData);
+    sysObj.drvUsart0 = DRV_USART_Initialize(DRV_USART_INDEX_0, (SYS_MODULE_INIT *)&drvUsart0InitData);
     SYS_INT_VectorPrioritySet(INT_VECTOR_UART1, INT_PRIORITY_LEVEL1);
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART1, INT_SUBPRIORITY_LEVEL0);
 

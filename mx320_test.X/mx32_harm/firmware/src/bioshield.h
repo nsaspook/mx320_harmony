@@ -26,15 +26,16 @@ extern "C" {
 #define pbsw2 PORTDbits.RD5
 #define pbsw3 PORTDbits.RD6
 #define pbsw4 PORTDbits.RD7
+#define MOTOR_FET1	PORTDbits.RD0
 
 #define LEDBAR  PORTE
 #define LD8     PORTEbits.RE7
 #define LD7     PORTEbits.RE6
-#define LD5     PORTFbits.RF0
+#define LD5     PORTEbits.RE5
 
 
-    void BasicIO_Initialize(void);
-    void board_test(void);
+	void BasicIO_Initialize(void);
+	void board_test(void);
 #ifdef	__cplusplus
 }
 #endif

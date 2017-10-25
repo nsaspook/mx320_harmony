@@ -175,34 +175,8 @@ build/default/production/_ext/1688732426/system_init.o:  \
  ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal_definitions.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal_impl_basic.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/driver/oc/drv_oc.h  \
- ../src/system_config/default/framework/driver/oc/drv_oc_static.h  \
  ../src/system_config/default/framework/system/devcon/sys_devcon.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/system/system.h  \
- ../src/system_config/default/framework/driver/tmr/drv_tmr_static.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/driver/tmr/drv_tmr.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/plib_tmr.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/tmr_processor.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/tmr_p32xxxx.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/tmr_p32mx320f128h.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_GatedTimeAccumulation_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_registers.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_ClockSource_Default_1.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_Prescale_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_ClockSourceSync_Inverted.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_Mode16Bit_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_Mode32Bit_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_EnableControl_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_StopInIdle_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_Counter16Bit_In16BitRegister.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_Counter32Bit_In16BitRegister.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_Period16Bit_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_Period32Bit_In16BitRegister_pic32.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_CounterAsyncWriteControl_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_CounterAsyncWriteInProgress_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/tmr/processor/../templates/tmr_TimerOperationMode_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/driver/tmr/tmr_definitions_pic32m.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/driver/tmr/drv_tmr_compatibility.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/driver/usart/drv_usart.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/driver/usart/drv_usart_definitions.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/usart/plib_usart.h  \

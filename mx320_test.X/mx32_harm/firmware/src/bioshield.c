@@ -12,7 +12,7 @@ void BasicIO_Initialize(void)
 void board_test(void)
 {
 	static uint32_t i = 0, j = 0, irow = 0, update_speed = 60000;
-	int32_t pot1 = 0;
+//	int32_t pot1 = 0;
 	static uint8_t cylon = 0xff;
 	static int32_t alive_led = 0;
 	static bool LED_UP = true;
@@ -49,7 +49,7 @@ void board_test(void)
 		}
 		OledClearBuffer();
 		OledSetCursor(0, 0);
-		sprintf(headder, "A %d P %d", pot1,DRV_TMR0_PeriodValueGet());
+//		sprintf(headder, "A %d P %d", pot1,DRV_TMR0_PeriodValueGet());
 		OledPutString(headder);
 		OledSetCursor(0, 1);
 		OledPutString("chipKIT Uno32");
@@ -64,7 +64,7 @@ void board_test(void)
 		OledLineTo(127, irow & 31);
 		OledUpdate();
 		irow++;
-		DRV_OC0_PulseWidthSet(DRV_TMR0_PeriodValueGet()/cylon);
-		DRV_OC1_PulseWidthSet(DRV_TMR0_PeriodValueGet()/cylon);
+//		DRV_OC0_PulseWidthSet(DRV_TMR0_PeriodValueGet()/cylon);
+//		DRV_OC1_PulseWidthSet(DRV_TMR0_PeriodValueGet()/cylon);
 	}
 }

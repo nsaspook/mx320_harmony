@@ -18,11 +18,19 @@ int32_t orienter_motor_check(int param1, int param2)
 	char headder[16];
 	static uint32_t display_delay = 0;
 
+	LD7 = 1;
+	LD7 = 0;
 	/* load the variable with the data from the switch inputs */
+	if (ssw4) {
+		MOTOR_FET1 = 1;
+		LED1 = 1;
+	} else {
+		MOTOR_FET1 = 0;
+		LED1 = 0;
+	}
 	orienter_motor.orienter_bits = 0;
 	/* shift the switch bits into the correct spot in the variable */
 	orienter_motor.orienter_bits = pbsw1 + (pbsw2 << 1) + (pbsw3 << 2) + (pbsw4 << 3);
-	LD7 = 1;
 	orienter_motor.motor_checks++;
 	LEDBAR = orienter_motor.orienter_bits;
 
@@ -62,10 +70,11 @@ int32_t orienter_motor_check(int param1, int param2)
 
 		orienter_motor.old_orienter_bits = orienter_motor.orienter_bits;
 		if (display_delay >= param1) {
+			LD5 = 1;
 			display_delay = 0;
 			OledClearBuffer();
 			OledSetCursor(0, 0);
-			sprintf(headder, "A%d B%d T%d %s", orienter_motor.a_counts, orienter_motor.b_counts, orienter_motor.motor_run-1, SVERSION);
+			sprintf(headder, "A%d B%d T%d %s", orienter_motor.a_counts, orienter_motor.b_counts, orienter_motor.motor_run - 1, SVERSION);
 			OledPutString(headder);
 			OledSetCursor(0, 1);
 			sprintf(headder, "CW%d CCW%d C%d", (uint32_t) orienter_motor.motor_run_cw, (uint32_t) orienter_motor.motor_run_ccw,
@@ -88,7 +97,7 @@ int32_t orienter_motor_check(int param1, int param2)
 			orienter_motor.aok1 = 0;
 			orienter_motor.aok2 = 0;
 			orienter_motor.aok3 = 0;
-
+			LD5 = 0;
 		}
 		LD8 = 0;
 	}

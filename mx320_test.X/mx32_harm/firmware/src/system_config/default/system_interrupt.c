@@ -110,23 +110,9 @@ void __ISR(_I2C_1_VECTOR, ipl1AUTO) _IntHandlerDrvI2CInstance0(void)
  
  
 
-void __ISR(_TIMER_2_VECTOR, ipl1AUTO) IntHandlerDrvTmrInstance0(void)
-{
-    PLIB_INT_SourceFlagClear(INT_ID_0,INT_SOURCE_TIMER_2);
-}
- 
 void __ISR(_SPI_2_VECTOR, ipl1AUTO) _IntHandlerSPIInstance0(void)
 {
     DRV_SPI_Tasks(sysObj.spiObjectIdx0);
-}
-
-void __ISR(_OUTPUT_COMPARE_1_VECTOR, ipl3AUTO) _IntHandlerDrvOCInstance0(void)
-{
-    PLIB_INT_SourceFlagClear(INT_ID_0, INT_SOURCE_OUTPUT_COMPARE_1);
-}
-void __ISR(_OUTPUT_COMPARE_2_VECTOR, ipl1AUTO) _IntHandlerDrvOCInstance1(void)
-{
-    PLIB_INT_SourceFlagClear(INT_ID_0, INT_SOURCE_OUTPUT_COMPARE_2);
 }
 /*******************************************************************************
  End of File
