@@ -45,7 +45,6 @@ void board_test(void)
 				}
 			}
 			j = 0;
-			LD5 = LED_UP;
 		}
 		OledClearBuffer();
 		OledSetCursor(0, 0);

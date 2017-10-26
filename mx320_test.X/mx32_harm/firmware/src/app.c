@@ -154,11 +154,11 @@ void APP_Tasks(void)
 
 		if (appInitialized) {
 			appData.state = APP_STATE_SERVICE_TASKS;
-			AD1PCFG = 0xffff;
-			TRISBbits.TRISB1 = 0;
-			TRISBbits.TRISB2 = 0;
-			TRISBbits.TRISB3 = 0;
-			AD1PCFG = 0xffff;
+//			AD1PCFG = 0x0000;
+//			TRISBbits.TRISB1 = 0;
+//			TRISBbits.TRISB2 = 0;
+//			TRISBbits.TRISB3 = 0;
+//			AD1PCFG = 0x0000;
 		}
 		break;
 	}

@@ -29,9 +29,9 @@ extern "C" {
 #define MOTOR_FET1	LATDbits.LATD0
 
 #define LEDBAR  PORTE
-#define LD8     PORTEbits.RE7
-#define LD7     PORTEbits.RE6
-#define LD5     PORTEbits.RE5
+#define LD8     LATEbits.LATE7
+#define LD7     LATEbits.LATE6
+#define LD6     LATEbits.LATE5
 
 
 	void BasicIO_Initialize(void);

@@ -18,8 +18,6 @@ int32_t orienter_motor_check(int param1, int param2)
 	char headder[16];
 	static uint32_t display_delay = 0;
 
-	LD7 = 1;
-	LD7 = 0;
 	/* load the variable with the data from the switch inputs */
 	if (ssw4) {
 		MOTOR_FET1 = 1;
@@ -35,7 +33,6 @@ int32_t orienter_motor_check(int param1, int param2)
 	LEDBAR = orienter_motor.orienter_bits;
 
 	if ((orienter_motor.orienter_bits != orienter_motor.old_orienter_bits) || (display_delay++ == param1)) {
-		LD8 = 1;
 		orienter_motor.motor_run++; // total AB encoder changes
 		if (param2 == 1) { // Orient motor at 12vdc
 			if (orienter_bits->orienter_a != old_orienter_bits->orienter_a) {
@@ -70,7 +67,6 @@ int32_t orienter_motor_check(int param1, int param2)
 
 		orienter_motor.old_orienter_bits = orienter_motor.orienter_bits;
 		if (display_delay >= param1) {
-			LD5 = 1;
 			display_delay = 0;
 			OledClearBuffer();
 			OledSetCursor(0, 0);
@@ -97,9 +93,7 @@ int32_t orienter_motor_check(int param1, int param2)
 			orienter_motor.aok1 = 0;
 			orienter_motor.aok2 = 0;
 			orienter_motor.aok3 = 0;
-			LD5 = 0;
 		}
-		LD8 = 0;
 	}
 	return 0;
 }
