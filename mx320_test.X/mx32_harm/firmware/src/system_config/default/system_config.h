@@ -88,11 +88,11 @@ extern "C" {
 #define SYS_CLK_CONFIG_SECONDARY_XTAL       32768ul
    
 /*** Ports System Service Configuration ***/
-#define SYS_PORT_AD1PCFG        ~0xff00
-#define SYS_PORT_CNPUE          0x3c
+#define SYS_PORT_AD1PCFG        ~0xff01
+#define SYS_PORT_CNPUE          0x0
 #define SYS_PORT_CNEN           0x0
 #define SYS_PORT_B_TRIS         0xFFB1
-#define SYS_PORT_B_LAT          0x000E
+#define SYS_PORT_B_LAT          0x0000
 #define SYS_PORT_B_ODC          0x0000
 
 #define SYS_PORT_C_TRIS         0xFFFF
@@ -218,27 +218,6 @@ extern "C" {
 // *****************************************************************************
 // *****************************************************************************
 /*** Application Defined Pins ***/
-
-/*** Functions for MOTOR_OK pin ***/
-#define MOTOR_OKToggle() PLIB_PORTS_PinToggle(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_3)
-#define MOTOR_OKOn() PLIB_PORTS_PinSet(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_3)
-#define MOTOR_OKOff() PLIB_PORTS_PinClear(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_3)
-#define MOTOR_OKStateGet() PLIB_PORTS_PinGetLatched(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_3)
-#define MOTOR_OKStateSet(Value) PLIB_PORTS_PinWrite(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_3, Value)
-
-/*** Functions for ENC_B_OK pin ***/
-#define ENC_B_OKToggle() PLIB_PORTS_PinToggle(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_2)
-#define ENC_B_OKOn() PLIB_PORTS_PinSet(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_2)
-#define ENC_B_OKOff() PLIB_PORTS_PinClear(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_2)
-#define ENC_B_OKStateGet() PLIB_PORTS_PinGetLatched(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_2)
-#define ENC_B_OKStateSet(Value) PLIB_PORTS_PinWrite(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_2, Value)
-
-/*** Functions for ENC_A_OK pin ***/
-#define ENC_A_OKToggle() PLIB_PORTS_PinToggle(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_1)
-#define ENC_A_OKOn() PLIB_PORTS_PinSet(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_1)
-#define ENC_A_OKOff() PLIB_PORTS_PinClear(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_1)
-#define ENC_A_OKStateGet() PLIB_PORTS_PinGetLatched(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_1)
-#define ENC_A_OKStateSet(Value) PLIB_PORTS_PinWrite(PORTS_ID_0, PORT_CHANNEL_B, PORTS_BIT_POS_1, Value)
 
 /*** Functions for motor_run pin ***/
 #define motor_runToggle() PLIB_PORTS_PinToggle(PORTS_ID_0, PORT_CHANNEL_D, PORTS_BIT_POS_0)
