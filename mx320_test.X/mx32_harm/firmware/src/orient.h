@@ -60,8 +60,8 @@ extern "C" {
 	typedef struct orienter_bits_t {
 		uint8_t orienter_a : 1;
 		uint8_t orienter_b : 1;
-		uint8_t orienter_cw : 1;
-		uint8_t orienter_ccw : 1;
+		uint8_t orienter_power : 1;
+		uint8_t orienter_aux : 1;
 		uint8_t dummy : 3;
 		uint8_t ab_poll : 1;
 	} orienter_bits_t;

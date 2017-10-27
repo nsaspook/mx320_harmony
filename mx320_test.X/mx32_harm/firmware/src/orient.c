@@ -34,7 +34,7 @@ int32_t orienter_motor_check(int param1, int param2)
 
 	if ((orienter_motor.orienter_bits != orienter_motor.old_orienter_bits) || (display_delay++ == param1)) {
 		orienter_motor.motor_run++; // total AB encoder changes
-		if (param2 == 1) { // Orient motor at 12vdc
+		if (param2 == 1) { // Orient motor running at 5vdc
 			if (orienter_bits->orienter_a != old_orienter_bits->orienter_a) {
 				orienter_motor.a_counts++;
 				if (orienter_motor.a_counts > ABCOUNT) {
@@ -67,20 +67,21 @@ int32_t orienter_motor_check(int param1, int param2)
 
 		orienter_motor.old_orienter_bits = orienter_motor.orienter_bits;
 		if (display_delay >= param1) {
+			LD8 = 1;
 			display_delay = 0;
 			OledClearBuffer();
 			OledSetCursor(0, 0);
 			sprintf(headder, "A%d B%d T%d %s", orienter_motor.a_counts, orienter_motor.b_counts, orienter_motor.motor_run - 1, SVERSION);
 			OledPutString(headder);
 			OledSetCursor(0, 1);
-			sprintf(headder, "CW%d CCW%d C%d", (uint32_t) orienter_motor.motor_run_cw, (uint32_t) orienter_motor.motor_run_ccw,
+			sprintf(headder, "%s %s C%d", orienter_motor.motor_run_cw ? "Clockwise" : "", orienter_motor.motor_run_ccw ? "Counter Clockwise" : "",
 				(uint32_t) lp_filter((float) orienter_motor.motor_checks, 0, true));
 			OledPutString(headder);
-			OledSetCursor(0, 2);
-			sprintf(headder, "%s %s %s %s", orienter_motor.aok1 == 1 ? "OK" : "NG", orienter_motor.aok2 == 1 ? "OK" : "NG",
-				orienter_motor.aok3 == 1 ? "OK" : "NG", orienter_bits->orienter_cw == 1 ? "OK" : "NG");
-			OledPutString(headder);
 			OledSetCursor(0, 3);
+			sprintf(headder, "%s %s %s %s", orienter_motor.aok1 == 1 ? "OK" : "NG", orienter_motor.aok2 == 1 ? "OK" : "NG",
+				orienter_motor.aok3 == 1 ? "OK" : "NG", orienter_bits->orienter_power == 1 ? "OK" : "NG");
+			OledPutString(headder);
+			OledSetCursor(0, 2);
 			OledPutString("Orienter Motor");
 			orienter_motor.a_counts = 0;
 			orienter_motor.b_counts = 0;
@@ -88,11 +89,12 @@ int32_t orienter_motor_check(int param1, int param2)
 			orienter_motor.motor_checks = 0;
 			orienter_motor.motor_run_ccw = false;
 			orienter_motor.motor_run_cw = false;
-			orienter_bits->orienter_cw = false;
-			orienter_bits->orienter_ccw = false;
+			orienter_bits->orienter_power = false;
+			orienter_bits->orienter_aux = false;
 			orienter_motor.aok1 = 0;
 			orienter_motor.aok2 = 0;
 			orienter_motor.aok3 = 0;
+			LD8 = 0;
 		}
 	}
 	return 0;
@@ -106,7 +108,7 @@ float lp_filter(float new, uint32_t bn, int32_t slow) // low pass filter, slow r
 	if (bn > LPCHANC)
 		return new;
 	if (slow) {
-		lp_speed = 0.06;
+		lp_speed = 0.1;
 	} else {
 		lp_speed = 0.250;
 	}
