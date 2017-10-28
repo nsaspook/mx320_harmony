@@ -18,6 +18,8 @@ int32_t orienter_motor_check(int param1, int param2)
 	char headder[16];
 	static uint32_t display_delay = 0;
 
+	LD6 = 1;
+
 	/* load the variable with the data from the switch inputs */
 	if (ssw4) {
 		MOTOR_FET1 = 1;
@@ -110,6 +112,7 @@ int32_t orienter_motor_check(int param1, int param2)
 			LD8 = 0;
 		}
 	}
+	LD6 = 0;
 	return 0;
 }
 
