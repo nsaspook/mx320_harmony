@@ -20,7 +20,6 @@ int32_t orienter_motor_check(int param1, int param2)
 
 	LD6 = 1;
 
-	/* load the variable with the data from the switch inputs */
 	if (ssw4) {
 		MOTOR_FET1 = 1;
 		LED1 = 1;
@@ -38,7 +37,7 @@ int32_t orienter_motor_check(int param1, int param2)
 		LD7 = 1;
 		orienter_motor.motor_run++; // total AB encoder changes
 		LD7 = 0;
-		if (param2 == 1) { // Orient motor running at 5vdc
+		if (param2 == 1) { // Orient motor running at 5vdc from tester
 			if (orienter_bits->orienter_a != old_orienter_bits->orienter_a) {
 				/* input A B logic, cpu signals are inverted at the opto stage */
 				if (old_orienter_bits->orienter_a == 1 && old_orienter_bits->orienter_b == 1 && !orienter_bits->orienter_a) {
@@ -97,7 +96,8 @@ int32_t orienter_motor_check(int param1, int param2)
 				orienter_motor.aok3 == 1 ? "OK" : "NG", orienter_bits->orienter_power == 1 ? "OK" : "NG");
 			OledPutString(headder);
 			OledSetCursor(0, 2);
-			OledPutString("Orienter Motor");
+			sprintf(headder, "%s %s", "Orient Motor", MOTOR_FET1 ? "ON" : "OFF");
+			OledPutString(headder);
 			orienter_motor.a_counts = 0;
 			orienter_motor.b_counts = 0;
 			orienter_motor.motor_run = 0;
