@@ -17,6 +17,7 @@
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/bioshield.h</file>
         </group>
         <group name="MBMC">
+            <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/orient.c</file>
             <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/orient.h</file>
             <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/bioshield.h</file>
         </group>

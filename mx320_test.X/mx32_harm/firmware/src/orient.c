@@ -33,29 +33,41 @@ int32_t orienter_motor_check(int param1, int param2)
 	LEDBAR = orienter_motor.orienter_bits;
 
 	if ((orienter_motor.orienter_bits != orienter_motor.old_orienter_bits) || (display_delay++ == param1)) {
+		LD7 = 1;
 		orienter_motor.motor_run++; // total AB encoder changes
+		LD7 = 0;
 		if (param2 == 1) { // Orient motor running at 5vdc
 			if (orienter_bits->orienter_a != old_orienter_bits->orienter_a) {
+				/* input A B logic, cpu signals are inverted at the opto stage */
+				if (old_orienter_bits->orienter_a == 1 && old_orienter_bits->orienter_b == 1 && !orienter_bits->orienter_a) {
+					orienter_motor.motor_run_ccw = true;
+					orienter_motor.motor_run_cw = false;
+					if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok3 = 1;
+				}
+				//				if (old_orienter_bits->orienter_a == 1 && old_orienter_bits->orienter_b == 1 && !orienter_bits->orienter_b) {
+				//					orienter_motor.motor_run_ccw = false;
+				//					orienter_motor.motor_run_cw = true;
+				//					if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok3 = 1;
+				//				}
 				orienter_motor.a_counts++;
 				if (orienter_motor.a_counts > ABCOUNT) {
 					orienter_motor.aok1 = 1;
 					lp_filter(0.0, 0, -1);
 				}
 				orienter_motor.motor_checks = 0;
-
+			}
+			if (orienter_bits->orienter_b != old_orienter_bits->orienter_b) {
 				/* input A B logic, cpu signals are inverted at the opto stage */
-				if (old_orienter_bits->orienter_a == 0 && old_orienter_bits->orienter_b == 0) {
-					orienter_motor.motor_run_ccw = true;
-					orienter_motor.motor_run_cw = false;
-					if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok3 = 1;
-				}
-				if (old_orienter_bits->orienter_a == 0 && old_orienter_bits->orienter_b == 1) {
+				//				if (old_orienter_bits->orienter_a == 1 && old_orienter_bits->orienter_b == 1 && !orienter_bits->orienter_a) {
+				//					orienter_motor.motor_run_ccw = true;
+				//					orienter_motor.motor_run_cw = false;
+				//					if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok3 = 1;
+				//				}
+				if (old_orienter_bits->orienter_a == 1 && old_orienter_bits->orienter_b == 1 && !orienter_bits->orienter_b) {
 					orienter_motor.motor_run_ccw = false;
 					orienter_motor.motor_run_cw = true;
 					if (orienter_motor.b_counts > ABCOUNT) orienter_motor.aok3 = 1;
 				}
-			}
-			if (orienter_bits->orienter_b != old_orienter_bits->orienter_b) {
 				orienter_motor.b_counts++;
 				if (orienter_motor.b_counts > ABCOUNT) {
 					orienter_motor.aok2 = 1;
@@ -64,6 +76,7 @@ int32_t orienter_motor_check(int param1, int param2)
 				orienter_motor.motor_checks = 0;
 			}
 		}
+
 
 		orienter_motor.old_orienter_bits = orienter_motor.orienter_bits;
 		if (display_delay >= param1) {
