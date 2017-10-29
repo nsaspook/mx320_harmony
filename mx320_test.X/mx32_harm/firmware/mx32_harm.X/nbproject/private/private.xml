@@ -18,7 +18,10 @@
         </group>
         <group>
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/orient.h</file>
+            <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/bioshield.c</file>
+            <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/system_config/default/framework/system/ports/src/sys_ports_static.c</file>
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/app.c</file>
+            <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/system_config/default/system_config.h</file>
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/orient.c</file>
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/bioshield.h</file>
         </group>
