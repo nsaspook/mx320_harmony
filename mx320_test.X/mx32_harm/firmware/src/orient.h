@@ -36,10 +36,13 @@
 extern "C" {
 #endif
 
-#define SVERSION	"V0.9"
+#define SVERSION	"V1.0"
 #define LPCHANC	8
 #define ABCOUNT	200
 #define MOTORCYCLES	500000
+#define A_REPEATS	200
+#define B_REPEATS	-200
+#define OVERSPEED	3100 // if the encoder counts are too high direction detecton fails
 
 	// Use the real ports for the A1,A2,A3 pins, not the IO Shield names
 #define LED1    LATBbits.LATB4
@@ -56,6 +59,7 @@ extern "C" {
 		uint32_t motor_run;
 		uint32_t motor_checks;
 		uint8_t orienter_bits, old_orienter_bits;
+		int32_t	ab_sure;
 	} orienter_data_t;
 
 	typedef struct orienter_bits_t {

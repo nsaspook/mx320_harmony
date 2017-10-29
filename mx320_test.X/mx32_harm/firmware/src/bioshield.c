@@ -49,7 +49,7 @@ void board_test(void)
 		OledClearBuffer();
 		OledSetCursor(0, 0);
 //		sprintf(headder, "A %d P %d", pot1,DRV_TMR0_PeriodValueGet());
-		OledPutString(headder);
+		OledPutString("Move SW1 UP");
 		OledSetCursor(0, 1);
 		OledPutString("chipKIT Uno32");
 		OledSetCursor(0, 2);

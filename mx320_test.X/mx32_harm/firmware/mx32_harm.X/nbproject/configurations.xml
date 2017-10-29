@@ -268,7 +268,7 @@
         <property key="enable-unroll-loops" value="false"/>
         <property key="exclude-floating-point" value="false"/>
         <property key="extra-include-directories"
-                  value="../../../../../microchip/harmony/v2_04/framework;../../../../../../root/microchip/harmony/v2_04/framework;../src;../src/system_config/default;../src/default;../../../../../../microchip/harmony/v2_04/framework;../src/system_config/default/framework;"/>
+                  value="../../../../../microchip/harmony/v2_04/framework;../../../../../../microchip/harmony/v2_04/framework;../src;../src/system_config/default;../src/default;../../../../../../root/microchip/harmony/v2_04/framework;../src/system_config/default/framework"/>
         <property key="generate-16-bit-code" value="false"/>
         <property key="generate-micro-compressed-code" value="false"/>
         <property key="isolate-each-function" value="true"/>
