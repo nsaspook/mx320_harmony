@@ -36,14 +36,14 @@
 extern "C" {
 #endif
 
-#define SVERSION	"V0.8"
+#define SVERSION	"V0.9"
 #define LPCHANC	8
 #define ABCOUNT	200
 #define MOTORCYCLES	500000
 
 	// Use the real ports for the A1,A2,A3 pins, not the IO Shield names
 #define LED1    LATBbits.LATB4
-#define LED2    LATBbits.LATB5
+#define LED2    LATBbits.LATB8
 #define LED3    LATBbits.LATB10
 
 	typedef struct orienter_data_t {
