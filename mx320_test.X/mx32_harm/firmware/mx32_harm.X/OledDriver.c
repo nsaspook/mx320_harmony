@@ -539,8 +539,8 @@ void OledUpdate(void)
 		//page number
 		/* Start at the left column
 		 */
-		//set low nybble of column
-		//set high nybble of column
+		//set low nibble of column
+		//set high nibble of column
 		TXbuffer[1] = ipag;
 		DRV_SPI_BufferAddWrite(SPIHandle, (uint8_t *) TXbuffer, sizeof(TXbuffer), 0, 0);
 		prtDataCmd = 1;

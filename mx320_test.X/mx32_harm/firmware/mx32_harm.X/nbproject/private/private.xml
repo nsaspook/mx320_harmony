@@ -16,8 +16,10 @@
             <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/bioshield.h</file>
         </group>
         <group>
+            <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/bioshield.c</file>
             <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/app.c</file>
             <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/orient.c</file>
+            <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/bioshield.h</file>
             <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/orient.h</file>
         </group>
     </open-files>

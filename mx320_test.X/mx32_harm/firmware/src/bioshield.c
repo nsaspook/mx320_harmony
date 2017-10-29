@@ -16,7 +16,7 @@ void board_test(void)
 	static uint8_t cylon = 0xff;
 	static int32_t alive_led = 0;
 	static bool LED_UP = true;
-	char headder[16];
+//	char headder[16];
 
 	if (i++ > update_speed) {
 		i = 0;

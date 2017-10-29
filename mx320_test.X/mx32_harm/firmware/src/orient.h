@@ -58,7 +58,7 @@ extern "C" {
 		uint32_t aok3 : 1;
 		uint32_t motor_run;
 		uint32_t motor_checks;
-		uint8_t orienter_bits, old_orienter_bits;
+		uint8_t orienter_bits, old_orienter_bits, motor_speed;
 		int32_t	ab_sure;
 	} orienter_data_t;
 
