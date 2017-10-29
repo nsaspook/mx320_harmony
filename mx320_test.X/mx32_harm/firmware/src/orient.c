@@ -20,18 +20,20 @@ int32_t orienter_motor_check(int param1, int param2)
 
 	LD6 = 1;
 
-	if (ssw4) {
-		MOTOR_FET1 = 1;
-		LED1 = 1;
-	} else {
-		MOTOR_FET1 = 0;
-		LED1 = 0;
-	}
 	orienter_motor.orienter_bits = 0;
 	/* shift the switch bits into the correct spot in the variable */
 	orienter_motor.orienter_bits = pbsw1 + (pbsw2 << 1) + (pbsw3 << 2) + (pbsw4 << 3);
 	orienter_motor.motor_checks++;
 	LEDBAR = orienter_motor.orienter_bits;
+	
+	if (ssw4) {
+		MOTOR_FET1 = 1;
+		if (orienter_bits->orienter_power)
+			LED1 = 1;
+	} else {
+		MOTOR_FET1 = 0;
+		LED1 = 0;
+	}
 
 	if ((orienter_motor.orienter_bits != orienter_motor.old_orienter_bits) || (display_delay++ == param1)) {
 		LD7 = 1;
@@ -39,6 +41,7 @@ int32_t orienter_motor_check(int param1, int param2)
 		LD7 = 0;
 		if (param2 == 1) { // Orient motor running at 5vdc from tester
 			if (orienter_bits->orienter_a != old_orienter_bits->orienter_a) {
+				LED2 = 1;
 				/* input A B logic, cpu signals are inverted at the opto stage */
 				if (old_orienter_bits->orienter_a == 1 && old_orienter_bits->orienter_b == 1 && !orienter_bits->orienter_a) {
 					orienter_motor.motor_run_ccw = true;
@@ -58,6 +61,7 @@ int32_t orienter_motor_check(int param1, int param2)
 				orienter_motor.motor_checks = 0;
 			}
 			if (orienter_bits->orienter_b != old_orienter_bits->orienter_b) {
+				LED3 = 1;
 				/* input A B logic, cpu signals are inverted at the opto stage */
 				//				if (old_orienter_bits->orienter_a == 1 && old_orienter_bits->orienter_b == 1 && !orienter_bits->orienter_a) {
 				//					orienter_motor.motor_run_ccw = true;
@@ -109,6 +113,9 @@ int32_t orienter_motor_check(int param1, int param2)
 			orienter_motor.aok1 = 0;
 			orienter_motor.aok2 = 0;
 			orienter_motor.aok3 = 0;
+			LED1 = 0;
+			LED2 = 0;
+			LED3 = 0;
 			LD8 = 0;
 		}
 	}

@@ -41,9 +41,10 @@ extern "C" {
 #define ABCOUNT	200
 #define MOTORCYCLES	500000
 
-#define LED1    LATBbits.LATB1
-#define LED2    LATBbits.LATB2
-#define LED3    LATBbits.LATB3
+	// Use the real ports for the A1,A2,A3 pins, not the IO Shield names
+#define LED1    LATBbits.LATB4
+#define LED2    LATBbits.LATB5
+#define LED3    LATBbits.LATB10
 
 	typedef struct orienter_data_t {
 		uint32_t a_counts, b_counts;
