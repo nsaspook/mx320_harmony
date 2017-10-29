@@ -5,7 +5,7 @@
     <SystemStartScript dnOrder="1"/>
   </DisplayManager>
   <General>
-    <HarmonyPath dnOrder="0" path="../../../../microchip/harmony/v2_04"/>
+    <HarmonyPath dnOrder="0" path="../../../../root/microchip/harmony/v2_04"/>
     <Processor dnOrder="1" name="PIC32MX320F128H"/>
     <Board dnOrder="2" name=""/>
     <ForceOptimization dnOrder="3" flag="true"/>
@@ -259,7 +259,7 @@
       <Template dnOrder="15">
         <Name dnOrder="0">system_config.h</Name>
         <Path dnOrder="1">Header&amp;#160;Files/app/system_config/default</Path>
-        <Checksum dnOrder="2">E2D3C3E20F7260D9AB9C59EF0943DAA4</Checksum>
+        <Checksum dnOrder="2">71C72029C6624291A47A42404B10BB4C</Checksum>
       </Template>
       <Template dnOrder="16">
         <Name dnOrder="0">app.h</Name>
@@ -288,15 +288,15 @@
     </Templates>
     <CompilerItems dnOrder="2">
       <C32 dnOrder="0">
-        <Include dnOrder="0" value="/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src"/>
-        <Include dnOrder="1" value="/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/system_config/default"/>
-        <Include dnOrder="2" value="/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/default"/>
-        <Include dnOrder="3" value="/old_os/microchip/harmony/v2_04/framework"/>
-        <Include dnOrder="4" value="/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/system_config/default/framework"/>
+        <Include dnOrder="0" value="/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src"/>
+        <Include dnOrder="1" value="/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/system_config/default"/>
+        <Include dnOrder="2" value="/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/default"/>
+        <Include dnOrder="3" value="/root/microchip/harmony/v2_04/framework"/>
+        <Include dnOrder="4" value="/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/system_config/default/framework"/>
       </C32>
     </CompilerItems>
     <Libraries dnOrder="3">
-      <Library dnOrder="0" value="../../../../../../microchip/harmony/v2_04/bin/framework/peripheral/PIC32MX320F128H_peripherals.a"/>
+      <Library dnOrder="0" value="../../../../../../root/microchip/harmony/v2_04/bin/framework/peripheral/PIC32MX320F128H_peripherals.a"/>
     </Libraries>
   </Manifest>
 </Configuration>
