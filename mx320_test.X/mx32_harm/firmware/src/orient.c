@@ -15,7 +15,7 @@ struct orienter_bits_t * old_orienter_bits = (void *) &orienter_motor.old_orient
  */
 int32_t orienter_motor_check(int param1, int param2)
 {
-	char headder[16];
+	char headder[32];
 	static uint32_t display_delay = 0;
 
 	LD6 = 1;

@@ -190,6 +190,10 @@ void SYS_Initialize ( void* data )
     DRV_I2C0_Initialize();
 
 
+    /* Initialize ADC */
+    DRV_ADC_Initialize();
+
+
     /*** SPI Driver Index 0 initialization***/
 
     SYS_INT_VectorPrioritySet(DRV_SPI_INT_VECTOR_IDX0, DRV_SPI_INT_PRIORITY_IDX0);

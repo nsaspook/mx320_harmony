@@ -146,9 +146,9 @@ void APP_Tasks(void)
 		/* Application's initial state. */
 	case APP_STATE_INIT:
 	{
-//		DRV_OC0_Start();
-//		DRV_OC1_Start();
-//		DRV_TMR0_Start();
+		DRV_ADC_Initialize();
+		DRV_ADC_Open();
+
 		bool appInitialized = true;
 
 
@@ -164,13 +164,16 @@ void APP_Tasks(void)
 
 		switch (ssw_state) {
 		case 0:
+			DRV_ADC_Start();
 			board_test();
 			break;
 
 		case 1:
+			DRV_ADC_Stop();
 			orienter_motor_check(MOTORCYCLES, ssw_state);
 			break;
 		default:
+			DRV_ADC_Start();
 			board_test();
 		}
 		break;

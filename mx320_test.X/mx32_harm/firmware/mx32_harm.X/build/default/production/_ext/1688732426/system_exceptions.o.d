@@ -177,6 +177,37 @@ build/default/production/_ext/1688732426/system_exceptions.o:  \
  ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal_impl_basic.h  \
  ../src/system_config/default/framework/system/devcon/sys_devcon.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/system/system.h  \
+ ../src/system_config/default/framework/driver/adc/drv_adc_static.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/plib_adc.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/adc_processor.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/adc_p32xxxx.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/adc_p32mx320f128h.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_EnableControl_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_registers.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_StopInIdle_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_CalibrationControl_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_MuxInputScanSelect_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_MuxInputScanSelectExtended_Unsupported.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_VoltageReference_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_MuxChannel0PositiveInput_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_MuxChannel0NegativeInput_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_MuxInputScanControl_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_SamplingModeControl_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_SamplesPerInterruptSelect_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_SamplingAutoStart_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_SamplingControl_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_SamplingAcquisitionTime_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_SamplingStatus_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ConversionControl_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ConversionClock_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ConversionClockSource_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ConversionTriggerSource_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ConversionStopSequenceControl_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ConversionStatus_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ResultFormat_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ResultBufferMode_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ResultBufferFillStatus_Default.h  \
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/adc/processor/../templates/adc_ResultGetByIndex_Default.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/driver/usart/drv_usart.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/driver/usart/drv_usart_definitions.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/usart/plib_usart.h  \
