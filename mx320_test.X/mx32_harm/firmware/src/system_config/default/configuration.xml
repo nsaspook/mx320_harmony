@@ -230,7 +230,7 @@
       <Template dnOrder="9">
         <Name dnOrder="0">drv_adc_static.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/driver/adc/src</Path>
-        <Checksum dnOrder="2">CCE4F4638EC377A413319E24D6164B89</Checksum>
+        <Checksum dnOrder="2">AD5841EB796228F89E5CFEB62F892FE6</Checksum>
       </Template>
       <Template dnOrder="10">
         <Name dnOrder="0">drv_i2c_static_buffer_model.h</Name>

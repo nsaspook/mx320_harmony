@@ -46,6 +46,8 @@ void board_test(void)
 			}
 			j = 0;
 		}
+		DRV_ADC_Start();
+		while ( !DRV_ADC_SamplesAvailable() );
 		pot1=DRV_ADC_SamplesRead(0);
 		OledClearBuffer();
 		OledSetCursor(0, 0);
