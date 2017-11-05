@@ -30,7 +30,7 @@ int32_t orienter_motor_check(int param1, int param2)
 		if (!ssw3) { // motor speed switch
 			MOTOR_FET1 = (orienter_motor.motor_speed++ % 3);
 		} else {
-			MOTOR_FET1 = 1;
+			MOTOR_FET1 = (orienter_motor.motor_speed++ % 2);
 		}
 		if (orienter_bits->orienter_power)
 			LED1 = 1;
