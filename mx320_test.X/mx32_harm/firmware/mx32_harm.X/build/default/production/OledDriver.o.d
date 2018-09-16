@@ -306,5 +306,4 @@ OledGrph.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/spi/processor/../templates/spi_AudioTransmitMode_Unsupported.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/spi/processor/../templates/spi_AudioProtocolMode_Unsupported.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/spi/processor/../templates/spi_Buffer32bit_Default.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/spi/processor/../templates/spi_Buffer16bit_Default.h  \
-
+ ../../../../../../root/microchip/harmony/v2_04/framework/peripheral/spi/processor/../templates/spi_Buffer16bit_Default.h 

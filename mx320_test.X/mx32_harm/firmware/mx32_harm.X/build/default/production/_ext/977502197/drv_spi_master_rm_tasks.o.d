@@ -166,5 +166,4 @@ build/default/production/_ext/977502197/drv_spi_master_rm_tasks.o:  \
  ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal_definitions.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal_impl_basic.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/driver/spi/src/drv_spi_sys_queue.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/driver/spi/src/drv_spi_variant_mapping.h  \
-
+ ../../../../../../root/microchip/harmony/v2_04/framework/driver/spi/src/drv_spi_variant_mapping.h 

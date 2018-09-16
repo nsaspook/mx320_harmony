@@ -171,5 +171,4 @@ build/default/production/_ext/12144542/drv_i2c_static_buffer_model.o:  \
  ../../../../../../root/microchip/harmony/v2_04/framework/driver/i2c/src/drv_i2c_variant_mapping.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal.h  \
  ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal_definitions.h  \
- ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal_impl_basic.h  \
-
+ ../../../../../../root/microchip/harmony/v2_04/framework/osal/osal_impl_basic.h 

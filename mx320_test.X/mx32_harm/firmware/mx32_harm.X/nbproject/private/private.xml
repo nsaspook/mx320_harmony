@@ -15,6 +15,11 @@
             <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/orient.h</file>
             <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/bioshield.h</file>
         </group>
-        <group/>
+        <group>
+            <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/mx32_harm.X/OledDriver.h</file>
+            <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/app.c</file>
+            <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/main.c</file>
+            <file>file:/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/mx32_harm.X/OledDriver.c</file>
+        </group>
     </open-files>
 </project-private>
