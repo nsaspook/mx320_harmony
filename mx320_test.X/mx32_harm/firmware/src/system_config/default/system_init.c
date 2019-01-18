@@ -129,6 +129,7 @@ const DRV_USART_INIT drvUsart0InitData =
     .lineControl = DRV_USART_LINE_CNTRL_IDX0,
     .baud = DRV_USART_BAUD_RATE_IDX0,
     .handshake = DRV_USART_HANDSHAKE_MODE_IDX0,
+    .linesEnable = DRV_USART_LINES_ENABLE_IDX0,
     .interruptTransmit = DRV_USART_XMIT_INT_SRC_IDX0,
     .interruptReceive = DRV_USART_RCV_INT_SRC_IDX0,
     .interruptError = DRV_USART_ERR_INT_SRC_IDX0,
@@ -184,7 +185,6 @@ void SYS_Initialize ( void* data )
     SYS_DEVCON_Initialize(SYS_DEVCON_INDEX_0, (SYS_MODULE_INIT*)NULL);
     SYS_DEVCON_PerformanceConfig(SYS_CLK_SystemFrequencyGet());
     SYS_DEVCON_JTAGDisable();
-    SYS_PORTS_Initialize();
 
     /* Initialize Drivers */
     DRV_I2C0_Initialize();
@@ -204,6 +204,7 @@ void SYS_Initialize ( void* data )
     SYS_INT_VectorSubprioritySet(INT_VECTOR_UART1, INT_SUBPRIORITY_LEVEL0);
 
     /* Initialize System Services */
+    SYS_PORTS_Initialize();
 
     /*** Interrupt Service Initialization Code ***/
     SYS_INT_Initialize();

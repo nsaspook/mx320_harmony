@@ -285,7 +285,6 @@ DRV_I2C_BUFFER_HANDLE DRV_I2C0_Receive (uint16_t deviceaddress,
         i2cBufferData->rxBuffer         = rxBuffer;
         i2cBufferData->bufferstatus     = DRV_I2C_BUFFER_EVENT_PENDING;
         i2cBufferData->transmitForced   = false;
-        i2c0State         = DRV_I2C_TASK_SEND_DEVICE_ADDRESS;
         if (i2cBufferData->i2cMode == DRV_I2C_MODE_MASTER)
         {
             /*  if either START and STOP were not detected which is true the
@@ -337,7 +336,6 @@ DRV_I2C_BUFFER_HANDLE DRV_I2C0_Transmit (uint16_t deviceaddress,
         i2cBufferData->txBuffer         = txBuffer;
         i2cBufferData->bufferstatus     = DRV_I2C_BUFFER_EVENT_PENDING;
         i2cBufferData->transmitForced   = false;
-        i2c0State         = DRV_I2C_TASK_SEND_DEVICE_ADDRESS;
         if (i2cBufferData->i2cMode == DRV_I2C_MODE_MASTER)
         {
             /*  if either START and STOP were not detected which is true the
@@ -386,7 +384,6 @@ DRV_I2C_BUFFER_HANDLE DRV_I2C0_TransmitForced (uint16_t deviceaddress,
         i2cBufferData->bufferstatus     = DRV_I2C_BUFFER_EVENT_PENDING;
         i2cBufferData->errorEvent       = DRV_I2C_HALT_ON_ERROR;
         i2cBufferData->transmitForced   = true;
-        i2c0State         = DRV_I2C_TASK_SEND_DEVICE_ADDRESS;
         if (i2cBufferData->i2cMode == DRV_I2C_MODE_MASTER)
         {
             /*  if either START and STOP were not detected which is true the
@@ -438,7 +435,6 @@ DRV_I2C_BUFFER_HANDLE DRV_I2C0_TransmitThenReceive ( uint16_t deviceaddress,
         i2cBufferData->actualtransfersize  = 0;
         i2cBufferData->transmitForced      = false;
         i2cBufferData->bufferstatus        = DRV_I2C_BUFFER_EVENT_PENDING;
-        i2c0State                   = DRV_I2C_TASK_SEND_DEVICE_ADDRESS;
 
 
         if (i2c0Obj.i2cMode == DRV_I2C_MODE_MASTER)

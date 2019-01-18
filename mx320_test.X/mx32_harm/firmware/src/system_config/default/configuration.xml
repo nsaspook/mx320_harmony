@@ -5,7 +5,7 @@
     <SystemStartScript dnOrder="1"/>
   </DisplayManager>
   <General>
-    <HarmonyPath dnOrder="0" path="../../../../root/microchip/harmony/v2_04"/>
+    <HarmonyPath dnOrder="0" path="../../../../../../root/microchip/harmony/v2_06"/>
     <Processor dnOrder="1" name="PIC32MX320F128H"/>
     <Board dnOrder="2" name=""/>
     <ForceOptimization dnOrder="3" flag="true"/>
@@ -191,7 +191,7 @@
       <Template dnOrder="1">
         <Name dnOrder="0">system_init.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default</Path>
-        <Checksum dnOrder="2">561947AD1CC1CC4C8190DB52423EBA0E</Checksum>
+        <Checksum dnOrder="2">4B9AAEECAB6932673D2190910067BD76</Checksum>
       </Template>
       <Template dnOrder="2">
         <Name dnOrder="0">main.c</Name>
@@ -200,7 +200,7 @@
       <Template dnOrder="3">
         <Name dnOrder="0">drv_i2c_static_buffer_model.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/driver/i2c/src</Path>
-        <Checksum dnOrder="2">FE2D2F1A63F9B6EE1C18AC1B278F073F</Checksum>
+        <Checksum dnOrder="2">F4A91CC15AD122DEB62B40A25105D007</Checksum>
       </Template>
       <Template dnOrder="4">
         <Name dnOrder="0">drv_spi_master_rm_tasks.c</Name>
@@ -215,7 +215,7 @@
       <Template dnOrder="6">
         <Name dnOrder="0">system_exceptions.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default</Path>
-        <Checksum dnOrder="2">C6886A1D85FB1927A101D5B41BED7630</Checksum>
+        <Checksum dnOrder="2">9836A04F3E98D3971DB91DF539160F34</Checksum>
       </Template>
       <Template dnOrder="7">
         <Name dnOrder="0">drv_adc_static.h</Name>
@@ -269,7 +269,7 @@
       <Template dnOrder="17">
         <Name dnOrder="0">system_config.h</Name>
         <Path dnOrder="1">Header&amp;#160;Files/app/system_config/default</Path>
-        <Checksum dnOrder="2">71C72029C6624291A47A42404B10BB4C</Checksum>
+        <Checksum dnOrder="2">E628F248F2DBE5857F15AC9FBB1C52B4</Checksum>
       </Template>
       <Template dnOrder="18">
         <Name dnOrder="0">app.h</Name>
@@ -278,7 +278,7 @@
       <Template dnOrder="19">
         <Name dnOrder="0">drv_i2c_mapping.c</Name>
         <Path dnOrder="1">Source&amp;#160;Files/app/system_config/default/framework/driver/i2c/src</Path>
-        <Checksum dnOrder="2">7D0F37523DD9A21CCB6E8BEC84FDBFA8</Checksum>
+        <Checksum dnOrder="2">E1044098D8EA50DFF2E94B5E060B5160</Checksum>
       </Template>
       <Template dnOrder="20">
         <Name dnOrder="0">system_interrupt.c</Name>
@@ -298,15 +298,15 @@
     </Templates>
     <CompilerItems dnOrder="2">
       <C32 dnOrder="0">
-        <Include dnOrder="0" value="/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src"/>
-        <Include dnOrder="1" value="/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/system_config/default"/>
-        <Include dnOrder="2" value="/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/default"/>
-        <Include dnOrder="3" value="/root/microchip/harmony/v2_04/framework"/>
-        <Include dnOrder="4" value="/fred/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/system_config/default/framework"/>
+        <Include dnOrder="0" value="/public/code/mchp/mx320_harmony/mx320_test.X/mx32_harm/firmware/src"/>
+        <Include dnOrder="1" value="/public/code/mchp/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/system_config/default"/>
+        <Include dnOrder="2" value="/public/code/mchp/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/default"/>
+        <Include dnOrder="3" value="/root/microchip/harmony/v2_06/framework"/>
+        <Include dnOrder="4" value="/public/code/mchp/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/system_config/default/framework"/>
       </C32>
     </CompilerItems>
     <Libraries dnOrder="3">
-      <Library dnOrder="0" value="../../../../../../root/microchip/harmony/v2_04/bin/framework/peripheral/PIC32MX320F128H_peripherals.a"/>
+      <Library dnOrder="0" value="../../../../../../../../root/microchip/harmony/v2_06/bin/framework/peripheral/PIC32MX320F128H_peripherals.a"/>
     </Libraries>
   </Manifest>
 </Configuration>

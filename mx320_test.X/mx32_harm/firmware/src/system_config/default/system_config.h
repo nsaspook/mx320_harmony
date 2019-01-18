@@ -18,7 +18,7 @@
     definitions for build-time configuration options that are not instantiated
     until used by another MPLAB Harmony module or application.
 
-    Created with MPLAB Harmony Version 2.04
+    Created with MPLAB Harmony Version 2.06
 *******************************************************************************/
 
 // DOM-IGNORE-BEGIN
@@ -75,8 +75,8 @@ extern "C" {
 // *****************************************************************************
 /* Common System Service Configuration Options
 */
-#define SYS_VERSION_STR           "2.04"
-#define SYS_VERSION               20400
+#define SYS_VERSION_STR           "2.06"
+#define SYS_VERSION               20600
 
 // *****************************************************************************
 /* Clock System Service Configuration Options
@@ -192,7 +192,8 @@ extern "C" {
 #define DRV_USART_BRG_CLOCK_IDX0                    80000000
 #define DRV_USART_BAUD_RATE_IDX0                    115200
 #define DRV_USART_LINE_CNTRL_IDX0                   DRV_USART_LINE_CONTROL_8NONE1
-#define DRV_USART_HANDSHAKE_MODE_IDX0               DRV_USART_HANDSHAKE_FLOWCONTROL
+#define DRV_USART_HANDSHAKE_MODE_IDX0               DRV_USART_HANDSHAKE_NONE
+#define DRV_USART_LINES_ENABLE_IDX0                 USART_ENABLE_TX_RX_USED
 #define DRV_USART_XMIT_INT_SRC_IDX0                 INT_SOURCE_USART_1_TRANSMIT
 #define DRV_USART_RCV_INT_SRC_IDX0                  INT_SOURCE_USART_1_RECEIVE
 #define DRV_USART_ERR_INT_SRC_IDX0                  INT_SOURCE_USART_1_ERROR

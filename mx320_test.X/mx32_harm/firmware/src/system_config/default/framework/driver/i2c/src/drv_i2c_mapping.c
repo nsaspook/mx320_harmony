@@ -92,11 +92,11 @@ DRV_I2C_BUFFER_HANDLE DRV_I2C_Transmit( DRV_HANDLE drvhandle, uint16_t deviceadd
         }
         default:
         {
-            return (DRV_I2C_BUFFER_HANDLE) NULL;
+            return DRV_I2C_BUFFER_HANDLE_INVALID;
         }
     }
     
-    return (DRV_I2C_BUFFER_HANDLE) NULL;
+    return DRV_I2C_BUFFER_HANDLE_INVALID;
 }
 
 DRV_I2C_BUFFER_HANDLE DRV_I2C_TransmitForced( DRV_HANDLE drvhandle, uint16_t deviceaddress,
@@ -112,11 +112,11 @@ DRV_I2C_BUFFER_HANDLE DRV_I2C_TransmitForced( DRV_HANDLE drvhandle, uint16_t dev
         }
         default:
         {
-            return (DRV_I2C_BUFFER_HANDLE) NULL;
+            return DRV_I2C_BUFFER_HANDLE_INVALID;
         }
     }
     
-    return (DRV_I2C_BUFFER_HANDLE) NULL;
+    return DRV_I2C_BUFFER_HANDLE_INVALID;
 }
 
 
@@ -132,11 +132,11 @@ DRV_I2C_BUFFER_HANDLE DRV_I2C_Receive ( DRV_HANDLE drvhandle, uint16_t deviceadd
         }
         default:
         {
-            return (DRV_I2C_BUFFER_HANDLE) NULL;
+            return DRV_I2C_BUFFER_HANDLE_INVALID;
         }
     }
     
-    return (DRV_I2C_BUFFER_HANDLE) NULL;
+    return DRV_I2C_BUFFER_HANDLE_INVALID;
 }
 
 DRV_I2C_BUFFER_HANDLE DRV_I2C_TransmitThenReceive ( DRV_HANDLE drvhandle, uint16_t deviceaddress,
@@ -152,11 +152,11 @@ DRV_I2C_BUFFER_HANDLE DRV_I2C_TransmitThenReceive ( DRV_HANDLE drvhandle, uint16
         }
         default:
         {
-            return (DRV_I2C_BUFFER_HANDLE) NULL;
+            return DRV_I2C_BUFFER_HANDLE_INVALID;
         }
     }
     
-    return (DRV_I2C_BUFFER_HANDLE) NULL;
+    return DRV_I2C_BUFFER_HANDLE_INVALID;
 }
 
 DRV_I2C_BUFFER_EVENT DRV_I2C_TransferStatusGet (  DRV_HANDLE drvhandle, DRV_I2C_BUFFER_HANDLE bufferHandle )
