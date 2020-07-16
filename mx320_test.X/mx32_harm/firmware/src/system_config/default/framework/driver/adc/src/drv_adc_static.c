@@ -55,7 +55,7 @@ void DRV_ADC_Initialize(void)
     /* Select Clock Source */
     PLIB_ADC_ConversionClockSourceSelect(DRV_ADC_ID_1, ADC_CLOCK_SOURCE_PERIPHERAL_BUS_CLOCK);
     /* Select Clock Prescaler */
-    PLIB_ADC_ConversionClockSet(DRV_ADC_ID_1, SYS_CLK_BUS_PERIPHERAL_1, 320000000);
+    PLIB_ADC_ConversionClockSet(DRV_ADC_ID_1, SYS_CLK_BUS_PERIPHERAL_1, 8000000);
 
     /* Select Power Mode */
     PLIB_ADC_StopInIdleDisable(DRV_ADC_ID_1);
@@ -73,7 +73,7 @@ void DRV_ADC_Initialize(void)
     /* Select Trigger Source */
     PLIB_ADC_ConversionTriggerSourceSelect(DRV_ADC_ID_1, ADC_CONVERSION_TRIGGER_INTERNAL_COUNT);
     /* Select Result Format */
-    PLIB_ADC_ResultFormatSelect(DRV_ADC_ID_1, ADC_RESULT_FORMAT_INTEGER_32BIT);
+    PLIB_ADC_ResultFormatSelect(DRV_ADC_ID_1, ADC_RESULT_FORMAT_INTEGER_16BIT);
     /* Buffer Mode */
     PLIB_ADC_ResultBufferModeSelect(DRV_ADC_ID_1, ADC_BUFFER_MODE_ONE_16WORD_BUFFER);
 
@@ -84,7 +84,7 @@ void DRV_ADC_Initialize(void)
 
 
     /* MUX A Positive Input Select */
-    PLIB_ADC_MuxChannel0InputPositiveSelect(DRV_ADC_ID_1, ADC_MUX_A, ADC_INPUT_POSITIVE_AN0);
+    PLIB_ADC_MuxChannel0InputPositiveSelect(DRV_ADC_ID_1, ADC_MUX_A, ADC_INPUT_POSITIVE_AN2);
  
     /* Initialize ADC Interrupt */
     PLIB_INT_SourceFlagClear(INT_ID_0, INT_SOURCE_ADC_1);

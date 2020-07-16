@@ -12,11 +12,11 @@ void BasicIO_Initialize(void)
 void board_test(void)
 {
 	static uint32_t i = 0, j = 0, irow = 0, update_speed = 60000;
-//	int32_t pot1 = 0;
+	int32_t pot1 = 0;
 	static uint8_t cylon = 0xff;
 	static int32_t alive_led = 0;
 	static bool LED_UP = true;
-	char headder[16];
+	char headder[32];
 
 	if (i++ > update_speed) {
 		i = 0;
@@ -46,10 +46,14 @@ void board_test(void)
 			}
 			j = 0;
 		}
+		DRV_ADC_Start();
+		while ( !DRV_ADC_SamplesAvailable() );
+		pot1=DRV_ADC_SamplesRead(0);
 		OledClearBuffer();
 		OledSetCursor(0, 0);
-//		sprintf(headder, "A %d P %d", pot1,DRV_TMR0_PeriodValueGet());
+		sprintf(headder, "A %d", pot1);
 		OledPutString(headder);
+//		OledPutString("Move SW1 UP");
 		OledSetCursor(0, 1);
 		OledPutString("chipKIT Uno32");
 		OledSetCursor(0, 2);

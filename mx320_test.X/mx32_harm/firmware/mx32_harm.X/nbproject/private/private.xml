@@ -11,6 +11,7 @@
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/system_config/default/system_config.h</file>
         </group>
         <group name="MBMC">
+<<<<<<< HEAD
             <file>file:/old_os/mx320_orient/mx320_test.X/mx32_harm/firmware/src/app.h</file>
             <file>file:/old_os/mx320_orient/mx320_test.X/mx32_harm/firmware/src/orient.h</file>
             <file>file:/old_os/mx320_orient/mx320_test.X/mx32_harm/firmware/src/orient.c</file>
@@ -24,6 +25,12 @@
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/system_config/default/system_config.h</file>
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/orient.c</file>
             <file>file:/fred/mx320/mx320_test.X/mx32_harm/firmware/src/bioshield.h</file>
+=======
+            <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/orient.c</file>
+            <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/orient.h</file>
+            <file>file:/old_os/mplabx/mx320_harmony/mx320_test.X/mx32_harm/firmware/src/bioshield.h</file>
+>>>>>>> ea72c9e9f483577d8071c12a79bff898de501706
         </group>
+        <group/>
     </open-files>
 </project-private>

@@ -108,6 +108,14 @@ void __ISR(_I2C_1_VECTOR, ipl1AUTO) _IntHandlerDrvI2CInstance0(void)
 
  
  
+void __ISR(_ADC_VECTOR, ipl3AUTO) _IntHandlerDrvAdc(void)
+{
+    /* Clear ADC Interrupt Flag */
+    PLIB_INT_SourceFlagClear(INT_ID_0, INT_SOURCE_ADC_1);
+}
+
+
+
  
 
 void __ISR(_SPI_2_VECTOR, ipl1AUTO) _IntHandlerSPIInstance0(void)
